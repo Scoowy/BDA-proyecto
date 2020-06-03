@@ -19,10 +19,10 @@ CREATE TABLE marcaprod (
     CONSTRAINT pk_marcaprod PRIMARY KEY ( id_marca )
 );
 
-CREATE TABLE estadoprd (
+CREATE TABLE estadosol (
     id_estado  NUMBER(1),
     estado     VARCHAR2(15),
-    CONSTRAINT pk_estadoprod PRIMARY KEY ( id_estado )
+    CONSTRAINT pk_estadosol PRIMARY KEY ( id_estado )
 );
 
 CREATE TABLE producto (
@@ -45,7 +45,9 @@ CREATE TABLE solicitud (
     establecimientos  VARCHAR2(255),
     CONSTRAINT pk_solicitud PRIMARY KEY ( id_solicitud ),
     CONSTRAINT fk_soli_prod FOREIGN KEY ( producto )
-        REFERENCES producto ( id_producto )
+        REFERENCES producto ( id_producto ),
+    CONSTRAINT fk_soli_esta FOREIGN KEY ( estado )
+        REFERENCES estadosol ( id_estado )
 );
 
 CREATE TABLE usuario (
