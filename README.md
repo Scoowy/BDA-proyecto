@@ -264,7 +264,7 @@ CREATE INDEX producto_nombre_idx ON
     );
 ```
 
-### Espaio en disco requerido
+### Espacio en disco requerido
 #### Nro de discos usados
 6 discos
 
@@ -280,6 +280,7 @@ CREATE INDEX producto_nombre_idx ON
 
 ## Justificación
 _Distribución tomando en cuenta el [Análisis transaccional](https://github.com/Scoowy/BDA-proyecto#an%C3%A1lisis-transaccional)_
+
 La razón por la cual usamos 6 discos para guardar la información es que nuestro sistema debe garantizar un buen seguimiento de todos sus clientes, debemos ser capaces de guardar una gran cantidad de información de los clientes y de las solicitudes que ello genera cada vez que utilizan nuestra aplicación y de la misma manera guardar toda la información de las tiendas que tendremos disponibles para visualizar los productos.
 
 ### Definición de tablespaces
