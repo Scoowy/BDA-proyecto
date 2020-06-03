@@ -1,15 +1,15 @@
 # Proyecto 1er Bimestre
 Proyecto IB de la materia de Base de Datos Avanzadas
-
-## Grupo:
+## Información del proyecto
+### Grupo:
 JDB
-## Integrantes:
+### Integrantes:
   - Luisa Bermeo
   - Juan Gahona
   - David Paredes
   - Daniel Ulloa
 
-## Título
+### Título
 Gestión de tiendas comerciales. 
 
 # Laboratorio 1.1
@@ -25,6 +25,11 @@ El establecimiento debe pertenecer a un gerente, además de tener información c
 Para un correcto manejo de los productos y para facilitar la búsqueda de los mismos se pide un nombre, marca y tipo; de esta manera el cliente al buscar, podrá catalogar los productos según sus preferencias.
 
 Finalmente para asegurar la integridad de la información y la existencia del producto, se necesita acceder al aplicativo primero y luego hacer una solicitud donde conste la cantidad que el cliente desea adquirir, además del estado de la misma. 
+
+## Modelo Entidad-Relación
+![Modelo Entidad-Relación](https://github.com/Scoowy/BDA-proyecto/blob/master/images/Proyecto%20IB%20BDA%20-%20Modelo%20EntidadRelaci%C3%B3n.png)
+## Modelo Relacional
+![Modelo Relaciona](https://github.com/Scoowy/BDA-proyecto/blob/master/images/Proyecto%20IB%20BDA%20-%20Modelo%20Relacional.png)
 
 ## Análisis transaccional
 ### Transacciones
