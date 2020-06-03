@@ -1,15 +1,15 @@
 # Proyecto 1er Bimestre
 Proyecto IB de la materia de Base de Datos Avanzadas
-
-## Grupo:
+## Información del proyecto
+### Grupo:
 JDB
-## Integrantes:
+### Integrantes:
   - Luisa Bermeo
   - Juan Gahona
   - David Paredes
   - Daniel Ulloa
 
-## Título
+### Título
 Gestión de tiendas comerciales. 
 
 # Laboratorio 1.1
@@ -26,8 +26,26 @@ Para un correcto manejo de los productos y para facilitar la búsqueda de los mi
 
 Finalmente para asegurar la integridad de la información y la existencia del producto, se necesita acceder al aplicativo primero y luego hacer una solicitud donde conste la cantidad que el cliente desea adquirir, además del estado de la misma. 
 
-## Análisis transaccional
-### Transacciones
+## Diseño conceptual
+### Diagrama Entidad-Relación
+![Modelo Entidad-Relación](https://github.com/Scoowy/BDA-proyecto/blob/master/images/Proyecto%20IB%20BDA%20-%20Modelo%20EntidadRelaci%C3%B3n.png)
+
+### Diccionario de datos
+Aqui la tabla
+
+## Diseño lógico
+### Diagrama Relacional
+![Modelo Relaciona](https://github.com/Scoowy/BDA-proyecto/blob/master/images/Proyecto%20IB%20BDA%20-%20Modelo%20Relacional.png)
+
+### Diccionario de datos
+Aqui la tabla
+
+## Diseño físico
+### Traducción modelo lógico a SGBD (DDL)
+Aqui los comandos sql
+
+### Análisis transaccional
+#### Transacciones
 
 | ID | Transacción                                                                                           | Tipo          |
 |----|-------------------------------------------------------------------------------------------------------|---------------|
@@ -55,7 +73,7 @@ Finalmente para asegurar la integridad de la información y la existencia del pr
 
 _Ordenado por el tipo de transacción_
 
-### Matriz cruzada transacciones/relaciones
+#### Matriz cruzada transacciones/relaciones
 
 |      Tran.      | Gerente | Establecimiento | Dirección | Solicitudes | Solicitud | Estado Solicitud | Usuario | Producto | Marca Producto | Tipo Producto | # tablas x tran. |
 |:---------------:|:-------:|:---------------:|:---------:|:-----------:|:---------:|:----------------:|:-------:|:--------:|:--------------:|:-------------:|:----------------:|
@@ -84,9 +102,12 @@ _Ordenado por el tipo de transacción_
 
 _Los valores más altos están marcados en negrita_
 
-#### Tablas críticas
+##### Tablas críticas
 Gracias a la matriz cruzada se determina que las tablas críticas son:
 * Estado solicitud
 * Solicitud
 * Solicitudes
 * Usuario
+
+### Definición de tablespaces
+Aqui sql de los tablespaces
