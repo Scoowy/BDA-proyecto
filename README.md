@@ -40,8 +40,12 @@ Aqui la tabla
 ### Diccionario de datos
 Aqui la tabla
 
-## Análisis transaccional
-### Transacciones
+## Diseño físico
+### Traducción modelo lógico a SGBD (DDL)
+Aqui los comandos sql
+
+### Análisis transaccional
+#### Transacciones
 
 | ID | Transacción                                                                                           | Tipo          |
 |----|-------------------------------------------------------------------------------------------------------|---------------|
@@ -69,7 +73,7 @@ Aqui la tabla
 
 _Ordenado por el tipo de transacción_
 
-### Matriz cruzada transacciones/relaciones
+#### Matriz cruzada transacciones/relaciones
 
 |      Tran.      | Gerente | Establecimiento | Dirección | Solicitudes | Solicitud | Estado Solicitud | Usuario | Producto | Marca Producto | Tipo Producto | # tablas x tran. |
 |:---------------:|:-------:|:---------------:|:---------:|:-----------:|:---------:|:----------------:|:-------:|:--------:|:--------------:|:-------------:|:----------------:|
@@ -98,9 +102,12 @@ _Ordenado por el tipo de transacción_
 
 _Los valores más altos están marcados en negrita_
 
-#### Tablas críticas
+##### Tablas críticas
 Gracias a la matriz cruzada se determina que las tablas críticas son:
 * Estado solicitud
 * Solicitud
 * Solicitudes
 * Usuario
+
+### Definición de tablespaces
+Aqui sql de los tablespaces
