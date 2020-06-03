@@ -26,10 +26,19 @@ Para un correcto manejo de los productos y para facilitar la búsqueda de los mi
 
 Finalmente para asegurar la integridad de la información y la existencia del producto, se necesita acceder al aplicativo primero y luego hacer una solicitud donde conste la cantidad que el cliente desea adquirir, además del estado de la misma. 
 
-## Modelo Entidad-Relación
+## Diseño conceptual
+### Diagrama Entidad-Relación
 ![Modelo Entidad-Relación](https://github.com/Scoowy/BDA-proyecto/blob/master/images/Proyecto%20IB%20BDA%20-%20Modelo%20EntidadRelaci%C3%B3n.png)
-## Modelo Relacional
+
+### Diccionario de datos
+Aqui la tabla
+
+## Diseño lógico
+### Diagrama Relacional
 ![Modelo Relaciona](https://github.com/Scoowy/BDA-proyecto/blob/master/images/Proyecto%20IB%20BDA%20-%20Modelo%20Relacional.png)
+
+### Diccionario de datos
+Aqui la tabla
 
 ## Análisis transaccional
 ### Transacciones
