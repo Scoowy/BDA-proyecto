@@ -412,5 +412,5 @@ AS (SELECT idProducto, nombre, tipo, marca)
 FROM Producto P MarcaProducto M
 LEFT OUTER JOIN MarcaProducto M ON M.idMarca = P.marca 
 WHERE tipo = “Lacteos”
-
 ```
+## Mecanismos de Seguridad
