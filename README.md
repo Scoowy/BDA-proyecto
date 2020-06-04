@@ -301,30 +301,30 @@ _Ordenado por el tipo de transacción_
 
 #### Matriz cruzada transacciones/relaciones
 
-|      Tran.      | Gerente | Establecimiento | Dirección | Solicitudes | Solicitud | Estado Solicitud | Usuario | Producto | Marca Producto | Tipo Producto | # tablas x tran. |
-|:---------------:|:-------:|:---------------:|:---------:|:-----------:|:---------:|:----------------:|:-------:|:--------:|:--------------:|:-------------:|:----------------:|
-|        A        |         |                 |           |             |           |                  |    X    |          |                |               |         1        |
-|        B        |    X    |                 |           |             |           |                  |    X    |          |                |               |         2        |
-|        C        |         |        X        |     X     |             |           |                  |         |          |                |               |         2        |
-|        D        |         |                 |           |             |           |                  |         |     X    |        X       |       X       |         3        |
-|        E        |         |                 |           |      X      |     X     |         X        |         |          |                |               |         3        |
-|        F        |    X    |        X        |     X     |             |           |                  |    X    |          |                |               |         4        |
-|        G        |         |                 |           |             |           |                  |         |     X    |        X       |       X       |         3        |
-|        H        |         |                 |           |      X      |     X     |         X        |    X    |          |                |               |         4        |
-|        I        |         |                 |           |      X      |     X     |         X        |    X    |     X    |                |               |       **5**      |
-|        J        |         |                 |           |             |           |                  |    X    |          |                |               |         1        |
-|        K        |         |        X        |           |             |           |                  |         |          |                |               |         1        |
-|        L        |         |        X        |     X     |             |           |                  |         |          |                |               |         2        |
-|        M        |         |                 |           |      X      |     X     |         X        |    X    |          |                |               |         4        |
-|        N        |         |                 |           |      X      |     X     |         X        |         |          |                |               |         3        |
-|        O        |         |                 |           |      X      |     X     |         X        |         |          |                |               |         3        |
-|        P        |         |                 |           |      X      |     X     |         X        |         |          |                |               |         3        |
-|        Q        |         |                 |           |             |           |                  |         |     X    |        X       |       X       |         3        |
-|        R        |         |                 |           |             |           |                  |         |     X    |        X       |       X       |         3        |
-|        S        |         |                 |           |      X      |     X     |         X        |    X    |     X    |                |               |       **5**      |
-|        T        |         |                 |           |      X      |     X     |         X        |    X    |     X    |                |               |       **5**      |
-|        U        |    X    |        x        |     X     |      X      |     X     |         X        |         |          |                |               |       **6**      |
-|**# tran. x tabla**|    3    |        5        |     4     |    **10**   |   **10**  |      **10**      |  **9**  |     7    |        4       |       4       |                  |
+| Transacción  | Gerente | Establecimiento | Dirección | Solicitudes | Solicitud | Estado   Solicitud | Usuario | Producto | Marca   Producto | Tipo   Producto | #   tablas x tran |
+|--------------|---------|-----------------|-----------|-------------|-----------|--------------------|---------|----------|------------------|-----------------|-------------------|
+| A            |         |                 |           |             |           |                    | X       |          |                  |                 | 1                 |
+| B            | X       |                 |           |             |           |                    | X       |          |                  |                 | 2                 |
+| C            |         | X               | X         |             |           |                    |         |          |                  |                 | 2                 |
+| D            |         |                 |           |             |           |                    |         | X        | X                | X               | 3                 |
+| E            |         |                 |           | X           | X         | X                  |         |          |                  |                 | 3                 |
+| F            | X       | X               | X         |             |           |                    | X       |          |                  |                 | 4                 |
+| G            |         |                 |           |             |           |                    |         | X        | X                | X               | 3                 |
+| H            |         |                 |           | X           | X         | X                  | X       |          |                  |                 | 4                 |
+| I            |         |                 |           | X           | X         | X                  | X       | X        |                  |                 | **5**                 |
+| J            |         |                 |           |             |           |                    | X       |          |                  |                 | 1                 |
+| K            |         | X               |           |             |           |                    |         |          |                  |                 | 1                 |
+| L            |         | X               | X         |             |           |                    |         |          |                  |                 | 2                 |
+| M            |         |                 |           | X           | X         | X                  | X       |          |                  |                 | 4                 |
+| N            |         |                 |           | X           | X         | X                  |         | X        | X                |                 | **5**                 |
+| O            |         |                 |           | X           | X         | X                  |         | X        | X                |                 | **5**                 |
+| P            |         |                 |           | X           | X         | X                  |         | X        | X                |                 | **5**                 |
+| Q            |         |                 |           |             |           |                    |         | X        | X                | X               | 3                 |
+| R            |         |                 |           |             |           |                    |         | X        | X                | X               | 3                 |
+| S            |         |                 |           | X           | X         | X                  | X       | X        |                  |                 | **5**                 |
+| T            |         |                 |           | X           | X         | X                  | X       | X        |                  |                 | **5**                 |
+| U            | X       | x               | X         | X           | X         | X                  |         |          |                  |                 | **6**                 |
+| tran x tabla | 3       | 5               | 4         | **10**          | **10**        | **10**                 | **9**       | **10**       | 7                | 4               |                   |
 
 _Los valores más altos están marcados en negrita_
 
@@ -334,6 +334,7 @@ Gracias a la matriz cruzada se determina que las tablas críticas son:
 * Solicitud
 * Solicitudes
 * Usuario
+* Producto
 
 ### Índices requeridos
 ```sql
