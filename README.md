@@ -10,7 +10,7 @@ JDB
   - Daniel Ulloa
 
 ### Título
-Gestión de tiendas comerciales. 
+Find it! - Encuentra el producto cerca de ti.
 
 # Laboratorio 1.1
 ## Descripción del problema 
