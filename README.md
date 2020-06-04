@@ -24,7 +24,7 @@ El establecimiento debe pertenecer a un gerente, además de tener información c
 
 Para un correcto manejo de los productos y para facilitar la búsqueda de los mismos se pide un nombre, marca y tipo; de esta manera el cliente al buscar, podrá catalogar los productos según sus preferencias.
 
-Finalmente para asegurar la integridad de la información y la existencia del producto, se necesita acceder al aplicativo primero y luego hacer una solicitud donde conste la cantidad que el cliente desea adquirir, además del estado de la misma. 
+Finalmente para asegurar la integridad de la información y la existencia del producto, se necesita acceder al aplicativo primero y luego hacer una solicitud donde conste la cantidad, el producto que desea adquirir, el establecimiento donde disponen del mismo y la fecha de la creacion de la solicitud, además del estado de la misma. 
 
 ## Diseño conceptual
 ### Diagrama Entidad-Relación
