@@ -390,3 +390,27 @@ La razón por la cual usamos 6 discos para guardar la información es que nuestr
 
 ### Definición de tablespaces
 Aqui sql de los tablespaces
+
+
+
+# Laboratorio 1.3
+## Vistas de Usuario
+
+En esta vista listamos todas las solicitudes generadas en un día determinado y el establecimiento que atendió el pedido 
+```sql
+CREATE VIEW P_cantidad 
+AS ( SELECT S. id Solicitud, S.cantidad, S.producto, S.estado, S.establecimientos, S.fecha, E.idEstablecimiento)
+FROM Solicitud S Establecimento E
+LEFT OUTER JOIN Establecimiento P ON P.idEstablecimiento = E.establecimientos 
+WHERE Fecha = 3/6/2020
+```
+
+En esta vista listamos las marcas que se tinen disponibles y el tipo de producto que podemos ofrecer.
+```sql
+CREATE VIEW P_tipo
+AS (SELECT idProducto, nombre, tipo, marca)
+FROM Producto P MarcaProducto M
+LEFT OUTER JOIN MarcaProducto M ON M.idMarca = P.marca 
+WHERE tipo = “Lacteos”
+
+```
