@@ -160,10 +160,11 @@ CREATE TABLE producto (
 ```sql
 CREATE TABLE solicitud (
     id_solicitud      NUMBER(4),
-    cantidad          NUMBER(3),
-    producto          NUMBER(4),
-    estado            NUMBER(1),
+    cantidad          NUMBER(3) NOT NULL,
+    producto          NUMBER(4) NOT NULL,
+    estado            NUMBER(1) NOT NULL,
     establecimientos  VARCHAR2(255),
+    fecha             DATE NOT NULL,
     CONSTRAINT pk_solicitud PRIMARY KEY ( id_solicitud ),
     CONSTRAINT fk_soli_prod FOREIGN KEY ( producto )
         REFERENCES producto ( id_producto ),
@@ -220,6 +221,7 @@ CREATE TABLE establecimiento (
     tipo_local  VARCHAR2(50) NOT NULL,
     url_imagen  VARCHAR2(255),
     direccion   NUMBER(4) NOT NULL,
+    estado      NUMBER(1) DEFAULT 1,
     CONSTRAINT pk_local PRIMARY KEY ( id_estab ),
     CONSTRAINT fk_loca_dire FOREIGN KEY ( direccion )
         REFERENCES direccion ( id_direccion )
@@ -305,14 +307,14 @@ Gracias a la matriz cruzada se determina que las tablas críticas son:
 
 ### Índices requeridos
 ```sql
-CREATE INDEX usuario_nombres_idx ON
-    usuario (
-        nombres
+CREATE INDEX direccion_callep_idx ON
+    direccion (
+        calle_p
     );
 
-CREATE INDEX usuario_apellidos_idx ON
-    usuario (
-        apellidos
+CREATE INDEX direccion_calles_idx ON
+    direccion (
+        calle_s
     );
 
 CREATE INDEX usuario_telefono_idx ON
