@@ -5,14 +5,16 @@
 * Integrantes: Luisa Bermeo, Juan Gahona, David Paredes y Daniel Ulloa
 * Fecha: 01-jun-2020
 */
-CREATE INDEX usuario_nombres_idx ON
-    usuario (
-        nombres
+
+-- Creacion de las tablas
+CREATE INDEX direccion_callep_idx ON
+    direccion (
+        calle_p
     );
 
-CREATE INDEX usuario_apellidos_idx ON
-    usuario (
-        apellidos
+CREATE INDEX direccion_calles_idx ON
+    direccion (
+        calle_s
     );
 
 CREATE INDEX usuario_telefono_idx ON
