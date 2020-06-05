@@ -414,3 +414,10 @@ LEFT OUTER JOIN MarcaProducto M ON M.idMarca = P.marca
 WHERE tipo = “Lacteos”
 ```
 ## Mecanismos de Seguridad
+- Activando la auditoria podemos realizar un examen de los accesos a los datos almacenados en las bases de datos con el fin de poder medir, monitorear y tener constancia de los accesos a la información almacenada en la misma, de esta manera podemos conocer de forma exacta cuál es la relación de los usuarios a la hora de acceder a las bases de datos, incluyendo las actuaciones que deriven en una generación, modificación o eliminación de datos.
+- Con la creación de vistas obtendremos los siguientes beneficios:
+-- Control de accesos: de una tabla real, se puede escoger qué información específicamente se desea compartir con otros usuarios. De este modo, ellos no tendrán acceso al resto de los datos de la tabla, solo a las VIEWS.
+-- Mejora del rendimiento: se pueden crear queries (consultas) a partir de vistas que han sido extraídas de SELECT complejas. Esto evita tener que ejecutar queries
+-- Pruebas seguras: las vistas ofrecen un entorno de tablas de prueba para que los desarrolladores no afecten la información real.
+-- Reusabilidad de consultas: gracias a las vistas, no se deben crear consultas complejas que requieran uniones de manera repetida.
+-- Mantenimiento de la integridad: al crear aplicaciones y usar las VIEWS en vez de las tablas reales se garantiza que dichas aplicaciones no se rompan cuando se realicen cambios en la estructura de la base de datos.
