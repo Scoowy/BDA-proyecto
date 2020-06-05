@@ -381,7 +381,8 @@ CREATE INDEX producto_nombre_idx ON
 | 1 | `Solicitud` `Solicitudes` |
 | 1 | `Producto` `EstadoSolicitud` `MarcaProducto` `TipoProducto` |
 | 1 | _Índices_ |
-| 1 | _Respaldo_ |
+| 1 | _Respaldo_A_ |
+| 1 | _Respaldo_B_ |
 
 ## Justificación
 _Distribución tomando en cuenta el [Análisis transaccional](https://github.com/Scoowy/BDA-proyecto#an%C3%A1lisis-transaccional)_
@@ -414,10 +415,14 @@ LEFT OUTER JOIN MarcaProducto M ON M.idMarca = P.marca
 WHERE tipo = “Lacteos”
 ```
 ## Mecanismos de Seguridad
-- Activando la auditoria podemos realizar un examen de los accesos a los datos almacenados en las bases de datos con el fin de poder medir, monitorear y tener constancia de los accesos a la información almacenada en la misma, de esta manera podemos conocer de forma exacta cuál es la relación de los usuarios a la hora de acceder a las bases de datos, incluyendo las actuaciones que deriven en una generación, modificación o eliminación de datos.
-- Con la creación de vistas obtendremos los siguientes beneficios:
--- Control de accesos: de una tabla real, se puede escoger qué información específicamente se desea compartir con otros usuarios. De este modo, ellos no tendrán acceso al resto de los datos de la tabla, solo a las VIEWS.
--- Mejora del rendimiento: se pueden crear queries (consultas) a partir de vistas que han sido extraídas de SELECT complejas. Esto evita tener que ejecutar queries
--- Pruebas seguras: las vistas ofrecen un entorno de tablas de prueba para que los desarrolladores no afecten la información real.
--- Reusabilidad de consultas: gracias a las vistas, no se deben crear consultas complejas que requieran uniones de manera repetida.
--- Mantenimiento de la integridad: al crear aplicaciones y usar las VIEWS en vez de las tablas reales se garantiza que dichas aplicaciones no se rompan cuando se realicen cambios en la estructura de la base de datos.
+### Auditoria
+Activando la auditoria podemos realizar un examen de los accesos a los datos almacenados en las bases de datos con el fin de poder medir, monitorear y tener constancia de los accesos a la información almacenada en la misma, de esta manera podemos conocer de forma exacta cuál es la relación de los usuarios a la hora de acceder a las bases de datos, incluyendo las actuaciones que deriven en una generación, modificación o eliminación de datos.
+### Vistas
+Con la creación de vistas obtendremos los siguientes beneficios:
+- Control de accesos: de una tabla real, se puede escoger qué información específicamente se desea compartir con otros usuarios. De este modo, ellos no tendrán acceso al resto de los datos de la tabla, solo a las VIEWS.
+- Mejora del rendimiento: se pueden crear queries (consultas) a partir de vistas que han sido extraídas de SELECT complejas. Esto evita tener que ejecutar queries
+- Pruebas seguras: las vistas ofrecen un entorno de tablas de prueba para que los desarrolladores no afecten la información real.
+- Reusabilidad de consultas: gracias a las vistas, no se deben crear consultas complejas que requieran uniones de manera repetida.
+- Mantenimiento de la integridad: al crear aplicaciones y usar las VIEWS en vez de las tablas reales se garantiza que dichas aplicaciones no se rompan cuando se realicen cambios en la estructura de la base de datos.
+### Respaldo
+Una copia de seguridad actual le puede ayudar a recuperarse de situaciones en las que un usuario pierde la información de la cuenta de administrador de un archivo o en las que un error de usuario (y, a veces, un diseño incorrecto de la base de datos) provoca la eliminación o la modificación inadecuadas de datos. Se pretende realizar copias de seguridad en dos disctos distintos; en el "disco A" se realizarian copias de seguridad cada 4h durante el dia y en el "Disco B" se haria una copia de seguridad sobre todo el sistema. De esta forma, si el servidor falla por alguna razón distinta a un error catastrófico de varias unidades, se podrá utilizar la copia de seguridad más reciente de los archivos de datos, por lo que solo se habrán perdido datos de un máximo de cuatro horas. En caso de que se produzca un error catastrófico de varias unidades, se podrá utilizar el soporte de copia de seguridad de la noche anterior, lo que reducirá la pérdida solo a los datos de un solo día.
