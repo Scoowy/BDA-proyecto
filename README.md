@@ -31,116 +31,123 @@ Finalmente para asegurar la integridad de la información y la existencia del pr
 ![Modelo Entidad-Relación](https://github.com/Scoowy/BDA-proyecto/blob/master/images/Proyecto%201B%20-%20ER.png)
 
 ### Diccionario de datos
-| NOMBRE   TABLA  | CAMPO           | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                       | RELACIÓN CON   TABLA(S)…                    |
-|-----------------|-----------------|--------|--------------|--------------|-------------------------------------------------------------------|---------------------------------------------|
-| TipoProducto    | idProducto      | 4      | integer      | PK           | Llave   primaria para identificar el tipo de producto             | Producto                                    |
-|                 | tipo            | 80     | varchar      |              | Nombre   del tipo de producto                                     |                                             |
-
-| NOMBRE   TABLA  | CAMPO           | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                       | RELACIÓN CON   TABLA(S)…                    |
-|-----------------|-----------------|--------|--------------|--------------|-------------------------------------------------------------------|---------------------------------------------|
-| MarcaProducto   | idMarca         | 4      | integer      | PK           | Llave   primaria que establece el id de la marca                  | Producto                                    |
-|                 | marca           | 120    | varchar      |              | Nombre   de la marca                                              |                                             |
-
-| NOMBRE   TABLA  | CAMPO           | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                       | RELACIÓN CON TABLA(S)…                      |
-|-----------------|-----------------|--------|--------------|--------------|-------------------------------------------------------------------|---------------------------------------------|
-| EstadoSolicitud | idEstado        | 1      | integer      | PK           | Llave   primaria que identifica el estado de la solicitud         | Solicitud                                   |
-|                 | estado          | 15     | varchar      |              | Hace   referencia al estado de la solicitud                       |                                             |
-
-| NOMBRE   TABLA  | CAMPO           | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                       | RELACIÓN CON   TABLA(S)…                    |
-|-----------------|-----------------|--------|--------------|--------------|-------------------------------------------------------------------|---------------------------------------------|
-| Producto        | idProducto      | 4      | integer      | PK           | Llave   primaria para identificar los productos                   | Solicitud,   Marca producto, Tipo Producto  |
-|                 | nombre          | 150    | varchar      |              | Nombre   del producto                                             |                                             |
-
-| NOMBRE   TABLA  | CAMPO           | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                       | RELACIÓN CON TABLA(S)…                      |
-|-----------------|-----------------|--------|--------------|--------------|-------------------------------------------------------------------|---------------------------------------------|
-| Solicitud       | idSolicitud     | 4      | integer      | PK           | Llave   primaria de la solicit                                    | Cliente,   EstadoSolicitud, Establecimiento |
-|                 | cantidad        | 3      | integer      |              | Hace   refencia a la cantidad de productos que el usuario desee   |                                             |
-|                 | fecha           |        | date         |              | Hace   refencia a la fecha que se realiza la solicitud el usuario |                                             |
-
-| NOMBRE   TABLA  | CAMPO           | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                       | RELACIÓN CON   TABLA(S)…                    |
-|-----------------|-----------------|--------|--------------|--------------|-------------------------------------------------------------------|---------------------------------------------|
-| Usuario         | dni             | 13     | integer      | PK           | Hace   referencia a la cédula del usuario                         | Cliente,   Gerente                          |
-|                 | nombres         | 50     | varchar      |              | Detalla   el nombre del usuario                                   |                                             |
-|                 | apellidos       | 50     | varchar      |              | Detalla   el apellido del usuario                                 |                                             |
-|                 | fechaNac        |        | date         |              | Hace   referencia ha la fecha de naciento del usuario             |                                             |
-|                 | telefono        | 25     | varchar      |              | Hace   refencia al numero de contacto del usuario                 |                                             |
-|                 | usuario         | 25     | varchar      |              | Hace   referencia al user name para el login                      |                                             |
-|                 | password        | 25     | varchar      |              | Hace   referancia a la clave del username                         |                                             |
-
-| NOMBRE   TABLA  | CAMPO           | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                       | RELACIÓN CON   TABLA(S)…                    |
-|-----------------|-----------------|--------|--------------|--------------|-------------------------------------------------------------------|---------------------------------------------|
-| Dirección       | idDirección     | 4      | integer      | PK           | Llave   primaria que identificar la direccion de cada local       | Establecimietno                             |
-|                 | callePrincipal  | 150    | varchar      |              | Hace   referencia a la calle principal de la ubicación del local  |                                             |
-|                 | calleSecundaria | 150    | varchar      |              | Hace   refencia a la calle secundaria de la ubicación del local   |                                             |
-|                 | referencia      | 150    | varchar      |              | Establece   una referencia de la ubicación del local              |                                             |
-|                 | ciudad          | 150    | varchar      |              | Hace   referncia a la ciudad donde se encuantra el local          |                                             |
-
-| NOMBRE   TABLA  | CAMPO           | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                       | RELACIÓN CON TABLA(S)…                      |
-|-----------------|-----------------|--------|--------------|--------------|-------------------------------------------------------------------|---------------------------------------------|
-| Gerente         |                 |        |              |              |                                                                   | Usuario,   Establecimiento                  |
-
-| NOMBRE TABLA    | CAMPO           | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                       | RELACIÓN   CON TABLA(S)…                    |
-|-----------------|-------------------|--------|--------------|--------------|-------------------------------------------------------------------|--------------------------------------------------|
-| Cliente         |                 |        |              |              |                                                                   | Usuario,   Solicitud                        |
-
+| NOMBRE   TABLA | CAMPO      | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                           | RELACIÓN CON   TABLA(S) |
+|----------------|------------|--------|--------------|--------------|-------------------------------------------------------|-------------------------|
+| TipoProducto   | idProducto | 4      | integer      | PK           | Llave   primaria para identificar el tipo de producto | Producto                |
+|                | tipo       | 80     | varchar      |              | Nombre   del tipo de producto                         |                         |
+| NOMBRE   TABLA | CAMPO   | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                             | RELACIÓN CON   TABLA(S) |
+|----------------|---------|--------|--------------|--------------|---------------------------------------------------------|-------------------------|
+| MarcaProducto  | idMarca | 4      | integer      | PK           | Llave   primaria para identificar la marca del producto | Producto                |
+|                | marca   | 120    | varchar      |              | Nombre   de la marca                                    |                         |
+| NOMBRE   TABLA  | CAMPO    | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                | RELACIÓN CON TABLA(S) |
+|-----------------|----------|--------|--------------|--------------|------------------------------------------------------------|-----------------------|
+| EstadoSolicitud | idEstado | 1      | integer      | PK           | Llave   primaria que identifica el estado de la solicitud  | Solicitud             |
+|                 | estado   | 15     | varchar      |              | Hace   referencia al estado de la solicitud                |                       |
+| NOMBRE   TABLA | CAMPO      | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                     | RELACIÓN CON   TABLA(S)                    |
+|----------------|------------|--------|--------------|--------------|-------------------------------------------------|--------------------------------------------|
+| Producto       | idProducto | 4      | integer      | PK           | Llave   primaria para identificar los productos | Solicitud,   Marca producto, Tipo Producto |
+|                | nombre     | 120    | varchar      |              | Nombre   del producto                           |                                            |
+| NOMBRE   TABLA | CAMPO       | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                            | RELACIÓN CON TABLA(S)                |
+|----------------|-------------|--------|--------------|--------------|--------------------------------------------------------|--------------------------------------|
+| Solicitud      | idSolicitud | 5      | integer      | PK           | Llave   primaria para identificar la solicitud         | Cliente,   EstadoSolicitud, Producto |
+|                | cantidad    | 3      | integer      |              | Hace   refencia a la cantidad de productos             |                                      |
+|                | fecha       |        | date         |              | Hace   refencia a la fecha que se realiza la solicitud |                                      |
+| NOMBRE   TABLA | CAMPO     | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                           | RELACIÓN CON   TABLA(S) |
+|----------------|-----------|--------|--------------|--------------|-------------------------------------------------------|-------------------------|
+| Usuario        | dni       | 10     | integer      | PK           | Llave   primaria para identificar el tipo de usuario  | Cliente,   Gerente      |
+|                | nombres   | 80     | varchar      |              | Detalla   el nombre del usuario                       |                         |
+|                | apellidos | 80     | varchar      |              | Detalla   el apellido del usuario                     |                         |
+|                | fechaNac  |        | date         |              | Hace   referencia a la fecha de naciento del usuario  |                         |
+|                | telefono  | 10     | varchar      |              | Hace   refencia al numero de contacto del usuario     |                         |
+|                | usuario   | 25     | varchar      |              | Hace   referencia al user name para el login          |                         |
+|                | password  | 25     | varchar      |              | Hace   referancia a la clave del username             |                         |
+| NOMBRE   TABLA | CAMPO           | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                       | RELACIÓN CON   TABLA(S) |
+|----------------|-----------------|--------|--------------|--------------|-------------------------------------------------------------------|-------------------------|
+| Dirección      | idDirección     | 4      | integer      | PK           | Llave   primaria que identificar la direccion de cada local       | Establecimiento         |
+|                | callePrincipal  | 150    | varchar      |              | Hace   referencia a la calle principal de la ubicación del local  |                         |
+|                | calleSecundaria | 150    | varchar      |              | Hace   referencia a la calle secundaria de la ubicación del local |                         |
+|                | referencia      | 150    | varchar      |              | Establece   una referencia de la ubicación del local              |                         |
+|                | ciudad          | 150    | varchar      |              | Hace   referencia a la ciudad donde se encuentra el local         |                         |
+| NOMBRE   TABLA  | CAMPO             | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                      | RELACIÓN CON   TABLA(S)           |
+|-----------------|-------------------|--------|--------------|--------------|------------------------------------------------------------------|-----------------------------------|
+| Establecimiento | idEstablecimiento | 4      | integer      | PK           | Llave   primaria que identificar los diferentes establecimientos | Gerente,   Solicitud,  Dirección  |
+|                 | nombre            | 150    | varchar      |              | Hace   referencia al nombre del local                            |                                   |
+|                 | tipoLocal         | 150    | varchar      |              | Hace   refencia al tipo de local                                 |                                   |
+|                 | url_imagen        | 255    | varchar      |              | Establece   el texto de la URL con la imagen del local           |                                   |
+|                 | estado            | 1      | integer      |              | Establece   el tipo de estado del local                          |                                   |
+| NOMBRE   TABLA | CAMPO | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                  | RELACIÓN CON TABLA(S)      |
+|----------------|-------|--------|--------------|--------------|------------------------------|----------------------------|
+| Gerente        | ruc   | 13     | varchar      |              | Identificación   del gerente | Usuario,   Establecimiento |
+| NOMBRE   TABLA | CAMPO | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN  | RELACIÓN CON   TABLA(S) |
+|----------------|-------|--------|--------------|--------------|--------------|-------------------------|
+| Cliente        |       |        |              |              |              | Usuario,   Solicitud    |
 ## Diseño lógico
 ### Diagrama Relacional
 ![Modelo Relaciona](https://github.com/Scoowy/BDA-proyecto/blob/master/images/Proyecto%201B%20-%20Relacional.png)
 
 ### Diccionario de datos
-| NOMBRE   TABLA  | CAMPO             | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                       | RELACIÓN CON   TABLA(S)…                         |
-|-----------------|-------------------|--------|--------------|--------------|-------------------------------------------------------------------|--------------------------------------------------|
-| TipoProducto    | idTipo            | 4      | integer      | PK           | Llave   primaria para identificar el tipo de producto             | Producto                                         |
-|                 | tipo              | 80     | varchar      |              | Nombre   del tipo de producto                                     |                                                  |
-
-| NOMBRE   TABLA  | CAMPO             | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                       | RELACIÓN CON   TABLA(S)…                         |
-|-----------------|-------------------|--------|--------------|--------------|-------------------------------------------------------------------|--------------------------------------------------|
-| MarcaProducto   | idMarca           | 4      | integer      | PK           | Llave   primaria que establece el id de la marca                  | Producto                                         |
-|                 | marca             | 80     | varchar      |              | Nombre   de la marca                                              |                                                  |
-
-| NOMBRE   TABLA  | CAMPO             | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                       | RELACIÓN   CON TABLA(S)…                         |
-|-----------------|-------------------|--------|--------------|--------------|-------------------------------------------------------------------|--------------------------------------------------|
-| EstadoSolicitud | idEstado          | 1      | integer      | PK           | Llave   primaria que identifica el estado de la solicitud         | Solicitud                                        |
-|                 | estado            | 15     | varchar      |              | Hace   referencia al estado de la solicitud                       |                                                  |
-
-| NOMBRE   TABLA  | CAMPO             | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                       | RELACIÓN CON   TABLA(S)…                         |
-|-----------------|-------------------|--------|--------------|--------------|-------------------------------------------------------------------|--------------------------------------------------|
-| Producto        | idProducto        | 4      | integer      | PK           | Llave   primaria para identificar los productos                   | Solicitud, Marca   Producto, Tipo Producto       |
-|                 | nombre            | 150    | varchar      |              | Nombre   del producto                                             |                                                  |
-|                 | tipo              | 120    | varchar      | FK           | Hace   referencia al tipo de producto                             |                                                  |
-|                 | marca             | 80     | varchar      | FK           | Establece   la marca del producto                                 |                                                  |
-
-| NOMBRE   TABLA  | CAMPO             | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                       | RELACIÓN CON   TABLA(S)…                         |
-|-----------------|-------------------|--------|--------------|--------------|-------------------------------------------------------------------|--------------------------------------------------|
-| Solicitud       | idSolicitud       | 4      | integer      | PK           | Llave   primaria de la solicitud                                  | Solicitudes, Estado   Solicitud, Establecimiento |
-|                 | cantidad          | 3      | integer      |              | Hace   refencia a la cantidad de productos que el usuario desee   |                                                  |
-|                 | producto          | 4      | integer      | FK           | Hace   referencia a la informacion del producto                   |                                                  |
-|                 | estado            | 4      | integer      | FK           | Hace referencia a   la informacion del estado                     |                                                  |
-|                 | fecha             |        | date         | FK           | Hace   refencia a la fecha que se realiza la solicitud el usuario |                                                  |
-|                 | establecimientos  | 255    | varchar      |              | Hace   referencia a la solicitud de un establecimiento            |                                                  |
-
-| NOMBRE   TABLA  | CAMPO             | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                       | RELACIÓN CON   TABLA(S)…                         |
-|-----------------|-------------------|--------|--------------|--------------|-------------------------------------------------------------------|--------------------------------------------------|
-| Usuario         | dni               | 13     | varchar      | PK           | Hace   refencia a la cedula del usuario                           | Gerente,   Solicitudes                           |
-|                 | nombre            | 50     | varchar      |              | Hace   referencia al nombre del usuario                           |                                                  |
-|                 | apellidos         | 50     | varchar      |              | Hace   refencia al apellido del usuario                           |                                                  |
-|                 | fechaNac          |        | date         |              | Hace   referencia ha la fecha de naciento del usuario             |                                                  |
-|                 | telefono          | 9      | integer      |              | Hace   refencia al numero de contacto del usuario                 |                                                  |
-|                 | usuario           | 25     | varchar      |              | Hace   referencia al user name para el login                      |                                                  |
-|                 | password          | 25     | varchar      |              | Hace   referancia a la clave del username                         |                                                  |
-
-| NOMBRE   TABLA  | CAMPO             | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                       | RELACIÓN CON   TABLA(S)…                         |
-|-----------------|-------------------|--------|--------------|--------------|-------------------------------------------------------------------|--------------------------------------------------|
-| Direccion       | idDireccion       | 4      | integer      | PK           | Llave   primaria que identificar la direccion de cada local       | Establecimiento                                  |
-|                 | callePrincipal    | 150    | varchar      |              | Hace   referencia a la calle principal de la ubicación del local  |                                                  |
-|                 | calleSecundaria   | 150    | varchar      |              | Hace   refencia a la calle secundaria de la ubicación del local   |                                                  |
-|                 | referencia        | 150    | varchar      |              | Establece   una referencia de la ubicación del local              |                                                  |
-|                 | ciudad            | 150    | varchar      |              | Hace   referencia a la ciudad donde se encuantra el local         |                                                  |
-
-| NOMBRE   TABLA  | CAMPO             | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                       | RELACIÓN CON   TABLA(S)…                         |
-|-----------------|-------------------|--------|--------------|--------------|-------------------------------------------------------------------|--------------------------------------------------|
-| Gerente         | ruc               | 13     | integer      | PK           | Llave   primaria de la tabla para identificar el gerente          | Usuario,   Establecimiento                       |
-|                 | local             | 4      | integer      | FK           | Hace   referencia al identificativo del Local                     |                                                  |
+| NOMBRE   TABLA | CAMPO  | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                           | RELACIÓN CON   TABLA(S) |
+|----------------|--------|--------|--------------|--------------|-------------------------------------------------------|-------------------------|
+| TipoProducto   | idTipo | 4      | integer      | PK           | Llave   primaria para identificar el tipo de producto | Producto                |
+|                | tipo   | 80     | varchar      |              | Nombre   del tipo de producto                         |                         |
+| NOMBRE   TABLA | CAMPO   | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                             | RELACIÓN CON   TABLA(S) |
+|----------------|---------|--------|--------------|--------------|---------------------------------------------------------|-------------------------|
+| MarcaProducto  | idMarca | 4      | integer      | PK           | Llave   primaria para identificar la marca del producto | Producto                |
+|                | marca   | 120    | varchar      |              | Nombre   de la marca                                    |                         |
+| NOMBRE   TABLA  | CAMPO    | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                | RELACIÓN CON   TABLA(S) |
+|-----------------|----------|--------|--------------|--------------|------------------------------------------------------------|-------------------------|
+| EstadoSolicitud | idEstado | 1      | integer      | PK           | Llave   primaria que identifica el estado de la solicitud  | Solicitud               |
+|                 | estado   | 15     | varchar      |              | Hace   referencia al estado de la solicitud                |                         |
+| NOMBRE   TABLA | CAMPO      | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                     | RELACIÓN CON   TABLA(S)                    |
+|----------------|------------|--------|--------------|--------------|-------------------------------------------------|--------------------------------------------|
+| Producto       | idProducto | 4      | integer      | PK           | Llave   primaria para identificar los productos | Solicitud, Marca   Producto, Tipo Producto |
+|                | nombre     | 120    | varchar      |              | Nombre   del producto                           |                                            |
+|                | tipo       | 4      | integer      | FK           | Hace   referencia al tipo de producto           |                                            |
+|                | marca      | 4      | integer      | FK           | Establece   la marca del producto               |                                            |
+| NOMBRE   TABLA | CAMPO       | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                            | RELACIÓN CON   TABLA(S)                         |
+|----------------|-------------|--------|--------------|--------------|--------------------------------------------------------|-------------------------------------------------|
+| Solicitud      | idSolicitud | 5      | integer      | PK           | Llave   primaria para identificar la solicitud         | Cliente, Producto,   EstadoSolicitud, Respuesta |
+|                | cantidad    | 3      | integer      |              | Hace   refencia a la cantidad de productos             |                                                 |
+|                | fecha       |        | date         |              | Hace   refencia a la fecha que se realiza la solicitud |                                                 |
+|                | cliente     | 10     | varchar      | FK           | Hace   referencia a la información de la tabla cliente |                                                 |
+|                | producto    | 4      | integer      | FK           | Hace referencia   a la informacion del producto        |                                                 |
+|                | estado      | 1      | integer      | FK           | Hace   refencia a la información del Estado Solicitud  |                                                 |
+| NOMBRE   TABLA | CAMPO     | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                            | RELACIÓN CON   TABLA(S) |
+|----------------|-----------|--------|--------------|--------------|--------------------------------------------------------|-------------------------|
+| Usuario        | dni       | 10     | varchar      | PK           | Llave   primaria para identificar el tipo de usuario   | Cliente,   Gerente      |
+|                | nombre    | 80     | varchar      |              | Hace   referencia al nombre del usuario                |                         |
+|                | apellidos | 80     | varchar      |              | Hace   refencia al apellido del usuario                |                         |
+|                | fechaNac  |        | date         |              | Hace   referencia ha la fecha de naciento del usuario  |                         |
+|                | telefono  | 10     | integer      |              | Hace   refencia al numero de contacto del usuario      |                         |
+|                | usuario   | 25     | varchar      |              | Hace   referencia al user name para el login           |                         |
+|                | password  | 25     | varchar      |              | Hace   referancia a la clave del username              |                         |
+| NOMBRE   TABLA | CAMPO           | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                               | RELACIÓN CON   TABLA(S)      |
+|----------------|-----------------|--------|--------------|--------------|---------------------------------------------------------------------------|------------------------------|
+| Respuesta      | establecimiento | 4      | integer      | PK           | Llave   primaria que hace referencia al establecimiento que dio respuesta | Solicitud,   Establecimiento |
+|                | solicitud       | 5      | integer      | PK           | Llave   primaria que hace referencia a la solicitud que se realizo        |                              |
+| NOMBRE   TABLA | CAMPO           | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                      | RELACIÓN CON   TABLA(S) |
+|----------------|-----------------|--------|--------------|--------------|------------------------------------------------------------------|-------------------------|
+| Direccion      | idDireccion     | 4      | integer      | PK           | Llave   primaria que identificar la direccion de cada local      | Establecimiento         |
+|                | callePrincipal  | 150    | varchar      |              | Hace   referencia a la calle principal de la ubicación del local |                         |
+|                | calleSecundaria | 150    | varchar      |              | Hace   refencia a la calle secundaria de la ubicación del local  |                         |
+|                | referencia      | 150    | varchar      |              | Establece   una referencia de la ubicación del local             |                         |
+|                | ciudad          | 150    | varchar      |              | Hace   referencia a la ciudad donde se encuantra el local        |                         |
+| NOMBRE   TABLA  | CAMPO      | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                   | RELACIÓN CON   TABLA(S)         |
+|-----------------|------------|--------|--------------|--------------|---------------------------------------------------------------|---------------------------------|
+| Establecimiento | idEstab    | 4      | integer      | PK           | Llave   primaria para establecer la numeración de cada local  | Gerente, Dirección,   Respuesta |
+|                 | nombre     | 150    | varchar      |              | Hace   referancia al nombre del local                         |                                 |
+|                 | tipoLocal  | 50     | varchar      |              | Establece   el tipo de local                                  |                                 |
+|                 | url_imagen | 225    | varchar      |              | Establece   el texto de la URL con la imagen del local        |                                 |
+|                 | estado     | 1      | integer      |              | Establece   una referencia de la ubicación del local          |                                 |
+|                 | direccion  | 4      | integer      | FK           | Hace   referencia a la direccion del local                    |                                 |
+| NOMBRE   TABLA | CAMPO           | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                              | RELACIÓN CON   TABLA(S)    |
+|----------------|-----------------|--------|--------------|--------------|----------------------------------------------------------|----------------------------|
+| Gerente        | dni             | 10     | varchar      | PK           | Llave   primaria de la tabla para identificar el gerente | Usuario,   Establecimiento |
+|                | ruc             | 13     | varchar      |              | Hace   referencia a la identificación del gerente        |                            |
+|                | establecimiento | 4      | integer      | FK           | Hace   referencia al identificativo del Local            |                            |
+| NOMBRE   TABLA | CAMPO | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                   | RELACIÓN CON   TABLA(S) |
+|----------------|-------|--------|--------------|--------------|-----------------------------------------------|-------------------------|
+| Cliente        | dni   | 10     | varchar      | PK           | Llave   primaria para indentificar el cliente | Usuario,   Solicitud    |
 
 ## Diseño físico
 ### Traducción modelo lógico a SGBD (DDL)
