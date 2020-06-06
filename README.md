@@ -81,12 +81,12 @@ Finalmente para asegurar la integridad de la información y la existencia del pr
 |                 | nombre            | 150    | varchar      |              | Hace   referencia al nombre del local                            |                                   |
 |                 | tipoLocal         | 150    | varchar      |              | Hace   refencia al tipo de local                                 |                                   |
 |                 | url_imagen        | 255    | varchar      |              | Establece   el texto de la URL con la imagen del local           |                                   |
-|                 | estado            | 1      | integer      |              | Establece   el tipo de estado del local                          |     
-|
+|                 | estado            | 1      | integer      |              | Establece   el tipo de estado del local                          |                                   |
 
 | NOMBRE   TABLA | CAMPO | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                  | RELACIÓN CON TABLA(S)      |
 |----------------|-------|--------|--------------|--------------|------------------------------|----------------------------|
 | Gerente        | ruc   | 13     | varchar      |              | Identificación   del gerente | Usuario,   Establecimiento |
+
 | NOMBRE   TABLA | CAMPO | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN  | RELACIÓN CON   TABLA(S) |
 |----------------|-------|--------|--------------|--------------|--------------|-------------------------|
 | Cliente        |       |        |              |              |              | Usuario,   Solicitud    |
