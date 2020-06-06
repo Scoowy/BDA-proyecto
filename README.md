@@ -83,12 +83,14 @@ Finalmente para asegurar la integridad de la información y la existencia del pr
 |                 | url_imagen        | 255    | varchar      |              | Establece   el texto de la URL con la imagen del local           |                                   |
 |                 | estado            | 1      | integer      |              | Establece   el tipo de estado del local                          |     
 |
+
 | NOMBRE   TABLA | CAMPO | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                  | RELACIÓN CON TABLA(S)      |
 |----------------|-------|--------|--------------|--------------|------------------------------|----------------------------|
 | Gerente        | ruc   | 13     | varchar      |              | Identificación   del gerente | Usuario,   Establecimiento |
 | NOMBRE   TABLA | CAMPO | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN  | RELACIÓN CON   TABLA(S) |
 |----------------|-------|--------|--------------|--------------|--------------|-------------------------|
 | Cliente        |       |        |              |              |              | Usuario,   Solicitud    |
+
 ## Diseño lógico
 ### Diagrama Relacional
 ![Modelo Relaciona](https://github.com/Scoowy/BDA-proyecto/blob/master/images/Proyecto%201B%20-%20Relacional.png)
@@ -162,10 +164,10 @@ Finalmente para asegurar la integridad de la información y la existencia del pr
 | Gerente        | dni             | 10     | varchar      | PK           | Llave   primaria de la tabla para identificar el gerente | Usuario,   Establecimiento |
 |                | ruc             | 13     | varchar      |              | Hace   referencia a la identificación del gerente        |                            |
 |                | establecimiento | 4      | integer      | FK           | Hace   referencia al identificativo del Local            |                            |
+
 | NOMBRE   TABLA | CAMPO | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                   | RELACIÓN CON   TABLA(S) |
 |----------------|-------|--------|--------------|--------------|-----------------------------------------------|-------------------------|
 | Cliente        | dni   | 10     | varchar      | PK           | Llave   primaria para indentificar el cliente | Usuario,   Solicitud    |
-
 ## Diseño físico
 ### Traducción modelo lógico a SGBD (DDL)
 #### Tabla TipoProducto
