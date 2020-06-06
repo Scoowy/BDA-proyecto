@@ -28,7 +28,7 @@ Finalmente para asegurar la integridad de la información y la existencia del pr
 
 ## Diseño conceptual
 ### Diagrama Entidad-Relación
-![Modelo Entidad-Relación](https://github.com/Scoowy/BDA-proyecto/blob/master/images/Proyecto%20IB%20BDA%20-%20Modelo%20EntidadRelaci%C3%B3n.png)
+![Modelo Entidad-Relación](https://github.com/Scoowy/BDA-proyecto/blob/master/images/Proyecto%201B%20-%20ER.png)
 
 ### Diccionario de datos
 | NOMBRE   TABLA  | CAMPO           | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                       | RELACIÓN CON   TABLA(S)…                    |
@@ -85,7 +85,7 @@ Finalmente para asegurar la integridad de la información y la existencia del pr
 
 ## Diseño lógico
 ### Diagrama Relacional
-![Modelo Relaciona](https://github.com/Scoowy/BDA-proyecto/blob/master/images/Proyecto%20IB%20BDA%20-%20Modelo%20Relacional.png)
+![Modelo Relaciona](https://github.com/Scoowy/BDA-proyecto/blob/master/images/Proyecto%201B%20-%20Relacional.png)
 
 ### Diccionario de datos
 | NOMBRE   TABLA  | CAMPO             | TAMAÑO | TIPO DE DATO | ORGANIZACIÓN | DESCRIPCIÓN                                                       | RELACIÓN CON   TABLA(S)…                         |
