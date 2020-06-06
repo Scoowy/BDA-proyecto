@@ -170,132 +170,145 @@ Finalmente para asegurar la integridad de la información y la existencia del pr
 | Cliente        | dni   | 10     | varchar      | PK           | Llave   primaria para indentificar el cliente | Usuario,   Solicitud    |
 ## Diseño físico
 ### Traducción modelo lógico a SGBD (DDL)
-#### Tabla TipoProducto
+#### Tabla Tipo Producto
 ```sql
-CREATE TABLE tipoprod (
-    id_tipo  NUMBER(4),
-    tipo     VARCHAR2(80) NOT NULL,
-    CONSTRAINT pk_tipoprod PRIMARY KEY ( id_tipo )
+CREATE TABLE tipo_producto (
+    id_tipo  NUMBER(4) PRIMARY KEY,
+    tipo     VARCHAR2(80 CHAR) NOT NULL
 );
 ```
 
-#### Tabla MarcaProducto
+#### Tabla Marca Producto
 ```sql
-CREATE TABLE marcaprod (
-    id_marca  NUMBER(4),
-    marca     VARCHAR2(120) NOT NULL,
-    CONSTRAINT pk_marcaprod PRIMARY KEY ( id_marca )
+CREATE TABLE marca_producto (
+    id_marca  NUMBER(4) PRIMARY KEY,
+    marca     VARCHAR2(120 CHAR) NOT NULL
 );
 ```
 
-#### Tabla EstadoSolicitud
+#### Tabla Estado Solicitud
 ```sql
-CREATE TABLE estadosol (
-    id_estado  NUMBER(1),
-    estado     VARCHAR2(15),
-    CONSTRAINT pk_estadosol PRIMARY KEY ( id_estado )
+CREATE TABLE estado_solicitud (
+    id_estado  NUMBER(1) PRIMARY KEY,
+    estado     VARCHAR2(15 CHAR) NOT NULL
 );
 ```
 
 #### Tabla Producto
 ```sql
 CREATE TABLE producto (
-    id_producto  NUMBER(4),
-    nombre       VARCHAR2(120) NOT NULL,
-    tipo         NUMBER(4) NOT NULL,
-    marca        NUMBER(4) NOT NULL,
-    CONSTRAINT pk_producto PRIMARY KEY ( id_producto ),
+    id_producto  NUMBER(4) PRIMARY KEY,
+    nombre       VARCHAR2(120 CHAR) NOT NULL,
+    tipo         NUMBER(4),
+    marca        NUMBER(4),
     CONSTRAINT fk_prod_tipo FOREIGN KEY ( tipo )
-        REFERENCES tipoprod ( id_tipo ),
+        REFERENCES tipo_producto ( id_tipo )
+            ON DELETE SET NULL,
     CONSTRAINT fk_prod_marc FOREIGN KEY ( marca )
-        REFERENCES marcaprod ( id_marca )
-);
-```
-
-#### Tabla Solicitud
-```sql
-CREATE TABLE solicitud (
-    id_solicitud      NUMBER(4),
-    cantidad          NUMBER(3) NOT NULL,
-    producto          NUMBER(4) NOT NULL,
-    estado            NUMBER(1) NOT NULL,
-    establecimientos  VARCHAR2(255),
-    fecha             DATE NOT NULL,
-    CONSTRAINT pk_solicitud PRIMARY KEY ( id_solicitud ),
-    CONSTRAINT fk_soli_prod FOREIGN KEY ( producto )
-        REFERENCES producto ( id_producto ),
-    CONSTRAINT fk_soli_esta FOREIGN KEY ( estado )
-        REFERENCES estadosol ( id_estado )
+        REFERENCES marca_producto ( id_marca )
+            ON DELETE SET NULL
 );
 ```
 
 #### Tabla Usuario
 ```sql
 CREATE TABLE usuario (
-    dni        VARCHAR2(13),
-    nombres    VARCHAR2(80) NOT NULL,
-    apellidos  VARCHAR2(80) NOT NULL,
-    fechanac   DATE NOT NULL,
-    telefono   VARCHAR2(10) NOT NULL,
-    usuario    VARCHAR2(25) NOT NULL,
-    password   VARCHAR2(25) NOT NULL,
-    CONSTRAINT pk_usuario PRIMARY KEY ( dni )
+    dni        VARCHAR2(10 CHAR) PRIMARY KEY,
+    nombres    VARCHAR2(80 CHAR) NOT NULL,
+    apellidos  VARCHAR2(80 CHAR) NOT NULL,
+    telefono   VARCHAR2(10 CHAR) NOT NULL,
+    usuario    VARCHAR2(25 CHAR) NOT NULL,
+    password   VARCHAR2(25 CHAR) NOT NULL,
+    fecha_nac  DATE NOT NULL
 );
 ```
 
-#### Tabla Solicitudes
+#### Tabla Cliente
 ```sql
-CREATE TABLE solicitudes (
-    cliente    VARCHAR2(13),
-    solicitud  NUMBER(4),
-    CONSTRAINT pk_soliitudes PRIMARY KEY ( cliente,
-                                           solicitud ),
-    CONSTRAINT fk_soli_cli FOREIGN KEY ( cliente )
-        REFERENCES usuario ( dni ),
-    CONSTRAINT fk_sols_soli FOREIGN KEY ( solicitud )
-        REFERENCES solicitud ( id_solicitud )
+CREATE TABLE cliente (
+    dni VARCHAR2(10 CHAR) PRIMARY KEY,
+    CONSTRAINT fk_clie_usua FOREIGN KEY ( dni )
+        REFERENCES usuario ( dni )
+            ON DELETE CASCADE
+);
+```
+
+#### Tabla Solicitud
+```sql
+CREATE TABLE solicitud (
+    id_solicitud  NUMBER(5) PRIMARY KEY,
+    cantidad      NUMBER(3) NOT NULL,
+    fecha         DATE NOT NULL,
+    cliente       VARCHAR2(10 CHAR) NOT NULL,
+    producto      NUMBER(4) NOT NULL,
+    estado        NUMBER(1) NOT NULL,
+    CONSTRAINT fk_soli_clie FOREIGN KEY ( cliente )
+        REFERENCES cliente ( dni )
+            ON DELETE CASCADE,
+    CONSTRAINT fk_soli_prod FOREIGN KEY ( producto )
+        REFERENCES producto ( id_producto )
+            ON DELETE CASCADE,
+    CONSTRAINT fk_soli_esta FOREIGN KEY ( estado )
+        REFERENCES estado_solicitud ( id_estado )
+            ON DELETE CASCADE
 );
 ```
 
 #### Tabla Direccion
 ```sql
 CREATE TABLE direccion (
-    id_direccion  NUMBER(4),
-    calle_p       VARCHAR2(150) NOT NULL,
-    calle_s       VARCHAR2(150) NOT NULL,
-    referencia    VARCHAR2(150),
-    ciudad        VARCHAR(150) NOT NULL,
-    CONSTRAINT pk_direccion PRIMARY KEY ( id_direccion )
+    id_direccion  NUMBER(4) PRIMARY KEY,
+    calle_p       VARCHAR2(150 CHAR) NOT NULL,
+    calle_s       VARCHAR2(150 CHAR) NOT NULL,
+    referencia    VARCHAR2(150 CHAR) NOT NULL,
+    ciudad        VARCHAR2(150 CHAR) NOT NULL
 );
 ```
 
 #### Tabla Establecimiento
 ```sql
 CREATE TABLE establecimiento (
-    id_estab    NUMBER(4),
-    nombre      VARCHAR2(150) NOT NULL,
-    tipo_local  VARCHAR2(50) NOT NULL,
-    url_imagen  VARCHAR2(255),
+    id_estab    NUMBER(4) PRIMARY KEY,
+    nombre      VARCHAR2(150 CHAR) NOT NULL,
+    estado      NUMBER(1) NOT NULL,
+    url_img     VARCHAR2(255 CHAR) NULL,
+    tipo_local  VARCHAR2(50 CHAR) NOT NULL,
     direccion   NUMBER(4) NOT NULL,
-    estado      NUMBER(1) DEFAULT 1,
-    CONSTRAINT pk_local PRIMARY KEY ( id_estab ),
-    CONSTRAINT fk_loca_dire FOREIGN KEY ( direccion )
+    CONSTRAINT fk_estab_dire FOREIGN KEY ( direccion )
         REFERENCES direccion ( id_direccion )
+            ON DELETE CASCADE
 );
 ```
 
 #### Tabla Gerente
 ```sql
 CREATE TABLE gerente (
-    ruc              VARCHAR2(13),
-    establecimiento  NUMBER(4) NOT NULL,
-    CONSTRAINT pk_gerente PRIMARY KEY ( ruc ),
-    CONSTRAINT fk_gere_user FOREIGN KEY ( ruc )
-        REFERENCES usuario ( dni ),
-    CONSTRAINT fk_gere_loca FOREIGN KEY ( establecimiento )
+    dni              VARCHAR2(10 CHAR) PRIMARY KEY,
+    ruc              VARCHAR2(13 CHAR) NOT NULL,
+    establecimiento  NUMBER(4),
+    CONSTRAINT fk_gere_usua FOREIGN KEY ( dni )
+        REFERENCES usuario ( dni )
+            ON DELETE CASCADE,
+    CONSTRAINT fk_gere_estab FOREIGN KEY ( establecimiento )
         REFERENCES establecimiento ( id_estab )
+            ON DELETE SET NULL
 );
 ```
+
+#### Tabla Respuesta
+```sql
+CREATE TABLE respuesta (
+    establecimiento  NUMBER(4) NOT NULL,
+    solicitud        NUMBER(5) NOT NULL,
+    CONSTRAINT fk_resp_estab FOREIGN KEY ( establecimiento )
+        REFERENCES establecimiento ( id_estab )
+            ON DELETE CASCADE,
+    CONSTRAINT fk_gere_soli FOREIGN KEY ( solicitud )
+        REFERENCES solicitud ( id_solicitud )
+            ON DELETE CASCADE
+);
+```
+
 ### Análisis transaccional
 #### Transacciones
 
