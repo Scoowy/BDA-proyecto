@@ -410,13 +410,36 @@ CREATE INDEX producto_nombre_idx ON
 | 1 | _Respaldo_A_ |
 | 1 | _Respaldo_B_ |
 
-## Justificación
+#### Justificación
 _Distribución tomando en cuenta el [Análisis transaccional](https://github.com/Scoowy/BDA-proyecto#an%C3%A1lisis-transaccional)_
 
 La razón por la cual usamos 6 discos para guardar la información es que nuestro sistema debe garantizar un buen seguimiento de todos sus clientes, debemos ser capaces de guardar una gran cantidad de información de los clientes y de las solicitudes que ello genera cada vez que utilizan nuestra aplicación y de la misma manera guardar toda la información de las tiendas que tendremos disponibles para visualizar los productos.
 
 ### Definición de tablespaces
-Aqui sql de los tablespaces
+```sql
+-- Crear tablespace para el proyecto
+CREATE TABLESPACE tbs_findit DATAFILE
+    'C:/ORACLEXE/APP/ORACLE/ORADATA/XE/PROYECTO_FIND_IT.DBF' SIZE 2048M
+EXTENT MANAGEMENT LOCAL SEGMENT SPACE MANAGEMENT AUTO;
+```
+
+
+# Laboratorio 1.2
+## Consulta antes y después de la desnormalización
+### Antes
+
+### Después
+
+
+## Tablas antes y después de la desnormalización
+### Antes
+
+### Después
+
+
+## Árboles de algebra relacional
+
+### El más óptimo
 
 
 
@@ -425,11 +448,25 @@ Aqui sql de los tablespaces
 
 En esta vista listamos todas las solicitudes generadas en un día determinado y el establecimiento que atendió el pedido 
 ```sql
-CREATE VIEW P_cantidad 
-AS ( SELECT S. id Solicitud, S.cantidad, S.producto, S.estado, S.establecimientos, S.fecha, E.idEstablecimiento)
-FROM Solicitud S Establecimento E
-LEFT OUTER JOIN Establecimiento P ON P.idEstablecimiento = E.establecimientos 
-WHERE Fecha = 3/6/2020
+CREATE OR REPLACE VIEW view_pedidos_pendientes_dia AS
+    SELECT
+        soli.id_solicitud,
+        prod.nombre producto,
+        tpro.tipo,
+        mpro.marca,
+        soli.fecha,
+        esta.estado
+    FROM
+             solicitud soli
+        JOIN estado_solicitud  esta ON soli.estado = esta.id_estado
+        JOIN producto          prod ON soli.producto = prod.id_producto
+        JOIN tipo_producto     tpro ON prod.tipo = tpro.id_tipo
+        JOIN marca_producto    mpro ON prod.marca = mpro.id_marca
+    WHERE
+            esta.estado = 'PENDIENTE'
+        AND to_char(soli.fecha, 'YYYY-MM-DD') = current_date
+    ORDER BY
+        soli.fecha DESC;
 ```
 
 En esta vista listamos las marcas que se tinen disponibles y el tipo de producto que podemos ofrecer.
