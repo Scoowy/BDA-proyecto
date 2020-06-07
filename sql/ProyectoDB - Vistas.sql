@@ -14,21 +14,30 @@ CREATE TABLESPACE tbs_findit DATAFILE
 EXTENT MANAGEMENT LOCAL SEGMENT SPACE MANAGEMENT AUTO;
 
 -- Creamos el usuario gestor de la aplicación
-CREATE USER admin_app IDENTIFIED BY "admin" DEFAULT TABLESPACE tbs_findit;
+
+CREATE USER admin_app IDENTIFIED BY "admin"
+    DEFAULT TABLESPACE tbs_findit;
 
 -- Creamos el usurio aplicacion
-CREATE USER app_findit IDENTIFIED BY "app_findit" DEFAULT TABLESPACE tbs_findit;
+
+CREATE USER app_findit IDENTIFIED BY "app_findit"
+    DEFAULT TABLESPACE tbs_findit;
 
 
 -- Dar permisos de conexion y de recursos
+
 GRANT connect, resource TO admin_app, app_findit;
-GRANT CREATE VIEW TO admin_app;
+
+GRANT
+    CREATE VIEW
+TO admin_app;
 
 
 
 
 -- ADMIN_APP
 -- Damos permisos de SELECT, INSERT, UPDATE sobre las tablas
+
 GRANT SELECT, INSERT, UPDATE ON usuario TO app_findit;
 
 GRANT SELECT, INSERT, UPDATE ON solicitud TO app_findit;
@@ -39,23 +48,25 @@ GRANT SELECT, INSERT, UPDATE ON gerente TO app_findit;
 
 -- Creamos la vista de pedidos pendientes que veran los gerentes de los estableciminetos
 
-CREATE OR REPLACE VIEW view_pedidos_pendientes AS
+CREATE OR REPLACE VIEW view_pedidos_pendientes_dia AS
     SELECT
-        s.id_solicitud,
-        s.cantidad,
-        s.fecha,
-        p.nombre,
-        m.marca
+        soli.id_solicitud,
+        prod.nombre producto,
+        tpro.tipo,
+        mpro.marca,
+        soli.fecha,
+        esta.estado
     FROM
-             solicitudes ss
-        JOIN solicitud  s ON ss.solicitud = s.id_solicitud
-        JOIN producto   p ON s.producto = p.id_producto
-        JOIN marcaprod  m ON p.marca = m.id_marca
+             solicitud soli
+        JOIN estado_solicitud  esta ON soli.estado = esta.id_estado
+        JOIN producto          prod ON soli.producto = prod.id_producto
+        JOIN tipo_producto     tpro ON prod.tipo = tpro.id_tipo
+        JOIN marca_producto    mpro ON prod.marca = mpro.id_marca
     WHERE
-            to_char(s.fecha, 'YYYY-MM-DD') = current_date
-        AND s.estado = 'PENDIENTE'
+            esta.estado = 'PENDIENTE'
+        AND to_char(soli.fecha, 'YYYY-MM-DD') = current_date
     ORDER BY
-        s.fecha ASC;
+        soli.fecha DESC;
         
 -- Le doy permiso de lectura a al usuario app_findit a la vista
 
@@ -84,14 +95,17 @@ CREATE OR REPLACE VIEW view_establecimientos_respuesta AS
         *
     FROM
              solicitudes ss
-        JOIN solicitud        s ON ss.solicitud = s.id_solicitud
-        JOIN estadosol        e ON s.estado = e.id_estado
-        JOIN establecimiento  eb ON s.
-        JOIN direccion        d ON eb.direccion = d.id_direccion
-    WHERE
-        e.estado = 'ACEPTADO';
-        
-SELECT es.nombre FROM establecimiento es JOIN TABLE(split('0,4,5', ',')) ON es.id_estab = column_value; 
+        JOIN solicitud  s ON ss.solicitud = s.id_solicitud
+        JOIN estadosol  e ON s.estado = e.id_estado
+JOIN establecimiento eb ON s.
+join direccion d ON eb.direccion = d.id_direccion
+WHERE
+                    e.estado = 'ACEPTADO';
+SELECT
+    es.nombre
+FROM
+         establecimiento es
+    JOIN TABLE ( split('0,4,5', ',') ) ON es.id_estab = column_value; 
         
 -- ORACLE no tine SPLIT y creamos un funcion que la remplaza
 -- https://livesql.oracle.com/apex/livesql/file/content_CAW2063JL0BJZLV392N4I2Q6Y.html

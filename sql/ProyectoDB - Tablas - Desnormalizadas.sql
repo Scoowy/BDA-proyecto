@@ -1,7 +1,7 @@
 /*
 * Laboratorio 1.1
 * Grupo: DBJ
-* Diseño físico - Creacion de tablas
+* Diseño físico - Creacion de tablas desnormalizadas
 * Integrantes: Luisa Bermeo, Juan Gahona, David Paredes y Daniel Ulloa
 * Fecha: 06-jun-2020
 */
@@ -15,11 +15,6 @@ CREATE TABLE tipo_producto (
 CREATE TABLE marca_producto (
     id_marca  NUMBER(4) PRIMARY KEY,
     marca     VARCHAR2(120 CHAR) NOT NULL
-);
-
-CREATE TABLE estado_solicitud (
-    id_estado  NUMBER(1) PRIMARY KEY,
-    estado     VARCHAR2(15 CHAR) NOT NULL
 );
 
 CREATE TABLE producto (
@@ -45,28 +40,18 @@ CREATE TABLE usuario (
     fecha_nac  DATE NOT NULL
 );
 
-CREATE TABLE cliente (
-    dni VARCHAR2(10 CHAR) PRIMARY KEY,
-    CONSTRAINT fk_clie_usua FOREIGN KEY ( dni )
-        REFERENCES usuario ( dni )
-            ON DELETE CASCADE
-);
-
 CREATE TABLE solicitud (
     id_solicitud  NUMBER(5) PRIMARY KEY,
     cantidad      NUMBER(3) NOT NULL,
     fecha         DATE NOT NULL,
     cliente       VARCHAR2(10 CHAR) NOT NULL,
     producto      NUMBER(4) NOT NULL,
-    estado        NUMBER(1) NOT NULL,
-    CONSTRAINT fk_soli_clie FOREIGN KEY ( cliente )
-        REFERENCES cliente ( dni )
+    estado        VARCHAR2(15) NOT NULL,
+    CONSTRAINT fk_soli_usua FOREIGN KEY ( cliente )
+        REFERENCES usuario ( dni )
             ON DELETE CASCADE,
     CONSTRAINT fk_soli_prod FOREIGN KEY ( producto )
         REFERENCES producto ( id_producto )
-            ON DELETE CASCADE,
-    CONSTRAINT fk_soli_esta FOREIGN KEY ( estado )
-        REFERENCES estado_solicitud ( id_estado )
             ON DELETE CASCADE
 );
 
@@ -113,8 +98,7 @@ CREATE TABLE respuesta (
             ON DELETE CASCADE
 );
 
--- Elminar las tablas
-
+-- Eliminar tablas
 DROP TABLE respuesta;
 
 DROP TABLE gerente;
@@ -125,14 +109,10 @@ DROP TABLE direccion;
 
 DROP TABLE solicitud;
 
-DROP TABLE estado_solicitud;
-
 DROP TABLE producto;
 
 DROP TABLE tipo_producto;
 
 DROP TABLE marca_producto;
-
-DROP TABLE cliente;
 
 DROP TABLE usuario;
