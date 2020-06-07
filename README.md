@@ -18,6 +18,40 @@ Find it! - Encuentra el producto cerca de ti.
 - Tablas formato Markdown: [Tables Generator](https://www.tablesgenerator.com/)
 - Árboles relacionales: [RelaX - Relational algebra calculator](https://dbis-uibk.github.io/relax/index.htm)
 
+# Índice
+- [Laboratorio 1.1](laboratorio-11)
+  - [Descripción  del problema](#descripci%C3%B3n-del-problema)
+  - [Detalle de requisitos de datos](h#detalle-de-requisitos-de-datos)
+  - [Diseño conceptual](#dise%C3%B1o-conceptual)
+    - [Diagrama Entidad-Relación](#diagrama-entidad-relaci%C3%B3n)
+  - [Diseño lógico](#dise%C3%B1o-l%C3%B3gico)
+    - [Diagrama Relacional](#diagrama-relacional)
+  - [Diseño físico](#dise%C3%B1o-f%C3%ADsico)
+    - [Traducción modelo lógico a SGBD (DDL)](#traducci%C3%B3n-modelo-l%C3%B3gico-a-sgbd-ddl)
+    - [Análisis transaccional](#an%C3%A1lisis-transaccional)
+    - [Índices requeridos](#%C3%ADndices-requeridos)
+    - [Espacio en disco requerido](#espacio-en-disco-requerido)
+    - [Definición de tablespaces](#definici%C3%B3n-de-tablespaces)
+- [Laboratorio 1.2](#laboratorio-12)
+  - [Consulta antes y después de la desnormalización](#consulta-antes-y-despu%C3%A9s-de-la-desnormalizaci%C3%B3n)
+    - [Antes](#antes-1)
+    - [Después](#despu%C3%A9s)
+  - [Tablas antes y después de la desnormalización](#tablas-antes-y-despu%C3%A9s-de-la-desnormalizaci%C3%B3n)
+    - [Antes](#antes)
+    - [Después](#despu%C3%A9s-1)
+  - [Árboles de algebra relacional](#tablas-antes-y-despu%C3%A9s-de-la-desnormalizaci%C3%B3n)
+    - [El menos óptimo](#el-menos-%C3%B3ptimo)
+    - [El más óptimo](#el-m%C3%A1s-%C3%B3ptimo)
+- [Laboratorio 1.3](#laboratorio-13)
+  - [Vistas de Usuario](#vistas-de-usuario)
+    - [Vista 1](#vista-1)
+    - [Vista 2](#vista-2)
+  - [Mecanismos de Seguridad](#mecanismos-de-seguridad)
+    - [Auditoría](#auditoria)
+    - [Vistas](#vistas)
+    - [Respaldo](#respaldo)
+
+
 # Laboratorio 1.1
 ## Descripción del problema 
 A causa de la pandemia mundial nos hemos visto obligados a entrar en confinamiento, evitando salir para cumplir con las disposiciones gubernamentales ante esta amenaza sanitaria; pero población necesita diversos productos que con el paso de los días se van agotando y el salir en búsqueda de los mismos es un riesgo tanto para el representante del hogar como para la familia.
