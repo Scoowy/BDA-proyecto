@@ -527,7 +527,7 @@ En este las selecciones por `estado = 'COMPLETO'` y `usuario = 'pemalm'`, se rea
 **τ** usua.usuario, soli.fecha **( π** usua.usuario, soli.id_solicitud, prod.nombre, soli.fecha, soli.estado **( σ** soli.estado = '*COMPLETO*' **∧** usua.usuario = '*pemalm*' **( ρ** prod **(producto) ⨝** prod.id_producto = soli.producto **( ρ** usua **(usuario) ⨝** soli.cliente = usua.dni  **ρ** soli **(solicitud) ) ) ) )**
 
 #### Árbol relacional
-*IMAGEN*
+![Árbol relacional no óptimo](https://github.com/Scoowy/BDA-proyecto/blob/master/images/ArbolNoOptimo.png)
 
 #### Resultado esperado
 | usuario | id_solicitud | producto | fecha      | estado   |
@@ -542,7 +542,7 @@ En este caso las selecciones por `estado = 'COMPLETO'` y `usuario = 'pemalm'`, s
 **τ** usua.usuario, soli.fecha **( π** usua.usuario, soli.id_solicitud, prod.nombre, soli.fecha, soli.estado **( ρ** prod **(producto) ⨝** prod.id_producto = soli.producto **( σ** usua.usuario = '*pemalm*' **( ρ** usua **(usuario) ) ⨝** soli.cliente = usua.dni **σ** soli.estado = '*COMPLETO*' **( ρ** soli **(solicitud) ) ) ) )**
 
 #### Árbol relacional
-*IMAGEN*
+![Árbol relacional óptimo](https://github.com/Scoowy/BDA-proyecto/blob/master/images/ArbolOptimo.png)
 
 #### Resultado esperado
 | usuario | id_solicitud | producto | fecha      | estado   |
