@@ -37,8 +37,8 @@ CREATE OR REPLACE VIEW view_productos_pedidos AS
              solicitud soli
         JOIN producto prod ON soli.producto = prod.id_producto
     WHERE
-            soli.fecha >= 'YYYY-MM-DD'
-        AND soli.fecha < 'YYYY-MM-DD'
+            soli.fecha >= '2020-01-01'
+        AND soli.fecha < '2020-05-31'
     GROUP BY
         prod.nombre
     ORDER BY
