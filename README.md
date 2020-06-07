@@ -13,10 +13,10 @@ JDB
 Find it! - Encuentra el producto cerca de ti.
 
 ### Herramientas utilizadas
-SQL: [SQL Developer](https://www.oracle.com/tools/downloads/sqldev-downloads.html)
-Diagramas: [Enterprise Architect - Trial Edition](https://sparxsystems.com/products/ea/trial/request.html)
-Tablas formato Markdown: [Tables Generator](https://www.tablesgenerator.com/)
-Árboles relacionales: [RelaX - Relational algebra calculator](https://dbis-uibk.github.io/relax/index.htm)
+- SQL: [SQL Developer](https://www.oracle.com/tools/downloads/sqldev-downloads.html)
+- Diagramas: [Enterprise Architect - Trial Edition](https://sparxsystems.com/products/ea/trial/request.html)
+- Tablas formato Markdown: [Tables Generator](https://www.tablesgenerator.com/)
+- Árboles relacionales: [RelaX - Relational algebra calculator](https://dbis-uibk.github.io/relax/index.htm)
 
 # Laboratorio 1.1
 ## Descripción del problema 
