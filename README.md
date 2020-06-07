@@ -440,15 +440,76 @@ EXTENT MANAGEMENT LOCAL SEGMENT SPACE MANAGEMENT AUTO;
 # Laboratorio 1.2
 ## Consulta antes y después de la desnormalización
 ### Antes
+```sql
+SELECT
+    usua.usuario         usuario,
+    soli.id_solicitud    solicitud,
+    soli.cantidad        cantidad,
+    prod.nombre          producto,
+    prod.tipo            tipo,
+    prod.marca           marca,
+    soli.fecha           fecha,
+    esta.estado          estado
+FROM
+         solicitud soli
+    JOIN cliente           clie ON soli.cliente = clie.dni
+    JOIN usuario           usua ON clie.dni = usua.dni
+    JOIN estado_solicitud  esta ON soli.estado = esta.id_estado
+    JOIN producto          prod ON soli.producto = prod.id_producto
+WHERE
+        usua.usuario = '[NOMBRE USUARIO]'
+    AND esta.estado = 'COMPLETO';
+```
 
 ### Después
-
+```sql
+SELECT
+    usua.usuario         usuario,
+    soli.id_solicitud    solicitud,
+    soli.cantidad        cantidad,
+    prod.nombre          producto,
+    prod.tipo            tipo,
+    prod.marca           marca,
+    soli.fecha           fecha,
+    soli.estado          estado
+FROM
+         solicitud soli
+    JOIN usuario   usua ON soli.cliente = usua.dni
+    JOIN producto  prod ON soli.producto = prod.id_producto
+WHERE
+        usua.usuario = '[NOMBRE USUARIO]'
+    AND soli.estado = 'COMPLETO';
+```
 
 ## Tablas antes y después de la desnormalización
+*Se presentan únicamente las tablas involucradas en la consulta que sufren la desnormalización*
 ### Antes
+#### Tabla Cliente
+| dni        |
+|------------|
+| 1900510000 |
+
+#### Tabla Estado Solicitud
+| id_estado | estado   |
+|-----------|----------|
+| 1         | COMPLETO |
+
+#### Tabla Solicitud
+| id_solicitud | cantidad | fecha      | cliente    | producto | estado |
+|--------------|----------|------------|------------|----------|--------|
+| 423          | 20       | 2020-05-24 | 1900510000 | 5        | 1      |
 
 ### Después
+#### Tabla Cliente
+*Tabla eliminada*
 
+#### Tabla Estado Solicitud
+*Tabla eliminada*
+
+#### Tabla Solicitud
+| id_solicitud | cantidad | fecha      | cliente    | producto | estado   |
+|--------------|----------|------------|------------|----------|----------|
+| 423          | 20       | 2020-05-24 | 1900510000 | 5        | COMPLETO |
 
 ## Árboles de algebra relacional
 
