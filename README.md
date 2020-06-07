@@ -331,68 +331,66 @@ CREATE TABLE respuesta (
 ### Análisis transaccional
 #### Transacciones
 
-| ID | Transacción                                                                                               | Tipo          |
-|----|-----------------------------------------------------------------------------------------------------------|---------------|
-| A  | Administrar usuarios                                                                                      | Actualización |
-| B  | Administrar gerentes                                                                                      | Actualización |
-| C  | Administrar establecimientos                                                                              | Actualización |
-| D  | Administrar productos                                                                                     | Actualización |
-| E  | Administrar clientes                                                                                      | Actualización |
-| F  | Actualizar estado del pedido                                                                              | Actualización |
-| G  | Registrar nuevo gerente                                                                                   | Actualización |
-| H  | Registrar nuevo producto                                                                                  | Actualización |
-| I  | Realizar nuevo pedido con producto   existente                                                            | Actualización |
-| J  | Realizar nuevo pedido con producto   nuevo                                                                | Actualización |
-| K  | Registrar nuevo cliente                                                                                   | Actualización |
-| L  | Listar establecimientos abiertos                                                                          | Consulta      |
-| M  | Listar los establecimientos   ubicados en una calle en particular                                         | Consulta      |
-| N  | Listar los pedidos realizados por   un cliente                                                            | Consulta      |
-| O  | Listar los pedidos pendientes                                                                             | Consulta      |
-| P  | Listar los pedidos completos                                                                              | Consulta      |
-| Q  | Listar los pedidos no atendidos                                                                           | Consulta      |
-| R  | Mostrar información del   producto clasificado por tipo                                                   | Consulta      |
-| S  | Mostrar productos según   preferencia de marca                                                            | Consulta      |
-| T  | Realizar un seguimiento mensual a   la cantidad de pedidos ordenados cronológicamente                     | Consulta      |
-| U  | Obtener los productos más   solicitados por los clientes dentro de un rango de edad ordenado por cantidad | Consulta      |
-| V  | Obtener información de los   establecimientos que han aceptado un pedido.                                 | Consulta      |
+| ID | Transacción                                                                                           | Tipo          |
+|----|-------------------------------------------------------------------------------------------------------|---------------|
+| A  | Administrar usuarios                                                                                  | Actualización |
+| B  | Administrar gerentes                                                                                  | Actualización |
+| C  | Administrar establecimientos                                                                          | Actualización |
+| D  | Administrar productos                                                                                 | Actualización |
+| E  | Actualizar estado del pedido                                                                          | Actualización |
+| F  | Registrar nuevo gerente                                                                               | Actualización |
+| G  | Registrar nuevo producto                                                                              | Actualización |
+| H  | Realizar nuevo pedido con producto existente                                                          | Actualización |
+| I  | Realizar nuevo pedido con producto nuevo                                                              | Actualización |
+| J  | Registrar nuevo usuario                                                                               | Actualización |
+| K  | Listar establecimientos abiertos                                                                      | Consulta      |
+| L  | Listar los establecimientos ubicados en una calle en particular                                       | Consulta      |
+| M  | Listar los pedidos realizados por un usuario                                                          | Consulta      |
+| N  | Listar los pedidos pendientes                                                                         | Consulta      |
+| O  | Listar los pedidos completos                                                                          | Consulta      |
+| P  | Listar los pedidos no atendidos                                                                       | Consulta      |
+| Q  | Mostrar información del producto clasificado por tipo                                                 | Consulta      |
+| R  | Mostrar productos según preferencia de marca                                                          | Consulta      |
+| S  | Realizar un seguimiento mensual a la cantidad de pedidos ordenados   cronológicamente                 | Consulta      |
+| T  | Obtener los productos más solicitados por usuarios dentro de un rango de   edad ordenado por cantidad | Consulta      |
+| U  | Obtener información de los establecimientos que han aceptado un pedido.                               | Consulta      |
 
 _Ordenado por el tipo de transacción_
 
 #### Matriz cruzada transacciones/relaciones
 
-| Transacción    | Gerente | Establecimiento | Dirección | Respuesta | Solicitud | Estado   Solicitud | Usuario | Producto | Marca   Producto | Tipo   Producto | Cliente | # tablas x tran |
-|----------------|---------|-----------------|-----------|-----------|-----------|--------------------|---------|----------|------------------|-----------------|---------|-----------------|
-| A              |         |                 |           |           |           |                    | X       |          |                  |                 |         | 1               |
-| B              | X       |                 |           |           |           |                    | X       |          |                  |                 |         | 2               |
-| C              |         | X               | X         |           |           |                    |         |          |                  |                 |         | 2               |
-| D              |         |                 |           |           |           |                    |         | X        | X                | X               |         | 3               |
-| E              |         |                 |           |           |           |                    | X       |          |                  |                 | X       | 2               |
-| F              |         |                 |           | X         | X         | X                  |         |          |                  |                 |         | 3               |
-| G              | X       | X               | X         |           |           |                    | X       |          |                  |                 |         | 4               |
-| H              |         |                 |           |           |           |                    |         | X        | X                | X               |         | 3               |
-| I              |         |                 |           | X         | X         | X                  | X       |          |                  |                 | X       | 5               |
-| J              |         |                 |           | X         | X         | X                  | X       | X        |                  |                 | X       | 6               |
-| K              |         |                 |           |           |           |                    | X       |          |                  |                 | X       | 2               |
-| L              |         | X               |           |           |           |                    |         |          |                  |                 |         | 1               |
-| M              |         | X               | X         |           |           |                    |         |          |                  |                 |         | 2               |
-| N              |         |                 |           | X         | X         | X                  | X       |          |                  |                 | X       | **5**               |
-| O              |         |                 |           | X         | X         | X                  |         | X        | X                |                 |         | **5**               |
-| P              |         |                 |           | X         | X         | X                  |         | X        | X                |                 |         | **5**               |
-| Q              |         |                 |           | X         | X         | X                  |         | X        | X                |                 |         | **5**               |
-| R              |         |                 |           |           |           |                    |         | X        | X                | X               |         | 3               |
-| S              |         |                 |           |           |           |                    |         | X        | X                | X               |         | 3               |
-| T              |         |                 |           | X         | X         | X                  | X       | X        |                  |                 | X       | **6**               |
-| U              |         |                 |           | X         | X         | X                  | X       | X        |                  |                 | X       | **6**               |
-| V              | X       | X               | X         | X         | X         | X                  |         |          |                  |                 |         | **6**               |
-| tran x   tabla | 3       | 5               | 4         | **10**        | **10**        | **10**                 | **10**      | **10**       | 7                | 4               | 7       |                 |
+| Transacción  | Gerente | Establecimiento | Dirección | Solicitudes | Solicitud | Estado   Solicitud | Usuario | Producto | Marca   Producto | Tipo   Producto | #   tablas x tran |
+|--------------|---------|-----------------|-----------|-------------|-----------|--------------------|---------|----------|------------------|-----------------|-------------------|
+| A            |         |                 |           |             |           |                    | X       |          |                  |                 | 1                 |
+| B            | X       |                 |           |             |           |                    | X       |          |                  |                 | 2                 |
+| C            |         | X               | X         |             |           |                    |         |          |                  |                 | 2                 |
+| D            |         |                 |           |             |           |                    |         | X        | X                | X               | 3                 |
+| E            |         |                 |           | X           | X         | X                  |         |          |                  |                 | 3                 |
+| F            | X       | X               | X         |             |           |                    | X       |          |                  |                 | 4                 |
+| G            |         |                 |           |             |           |                    |         | X        | X                | X               | 3                 |
+| H            |         |                 |           | X           | X         | X                  | X       |          |                  |                 | 4                 |
+| I            |         |                 |           | X           | X         | X                  | X       | X        |                  |                 | **5**                 |
+| J            |         |                 |           |             |           |                    | X       |          |                  |                 | 1                 |
+| K            |         | X               |           |             |           |                    |         |          |                  |                 | 1                 |
+| L            |         | X               | X         |             |           |                    |         |          |                  |                 | 2                 |
+| M            |         |                 |           | X           | X         | X                  | X       |          |                  |                 | 4                 |
+| N            |         |                 |           | X           | X         | X                  |         | X        | X                |                 | **5**                 |
+| O            |         |                 |           | X           | X         | X                  |         | X        | X                |                 | **5**                 |
+| P            |         |                 |           | X           | X         | X                  |         | X        | X                |                 | **5**                 |
+| Q            |         |                 |           |             |           |                    |         | X        | X                | X               | 3                 |
+| R            |         |                 |           |             |           |                    |         | X        | X                | X               | 3                 |
+| S            |         |                 |           | X           | X         | X                  | X       | X        |                  |                 | **5**                 |
+| T            |         |                 |           | X           | X         | X                  | X       | X        |                  |                 | **5**                 |
+| U            | X       | x               | X         | X           | X         | X                  |         |          |                  |                 | **6**                 |
+| tran x tabla | 3       | 5               | 4         | **10**          | **10**        | **10**                 | **9**       | **10**       | 7                | 4               |                   |
 
 _Los valores más altos están marcados en negrita_
 
 ##### Tablas críticas
 Gracias a la matriz cruzada se determina que las tablas críticas son:
-* Respuesta
+* Estado solicitud
 * Solicitud
-* Estado Solicitud
+* Solicitudes
 * Usuario
 * Producto
 
@@ -452,7 +450,7 @@ _Distribución tomando en cuenta el [Análisis transaccional](https://github.com
 La razón por la cual usamos **7 discos** para guardar la información es que nuestro sistema debe garantizar un buen seguimiento de todos sus clientes, debemos ser capaces de guardar una gran cantidad de información de los clientes y de las solicitudes que ello genera cada vez que utilizan nuestra aplicación y de la misma manera guardar toda la información de las tiendas que tendremos disponibles para visualizar los productos.
 
 ### Definición de tablespaces
-Código extraido del archivo [ProyectoDB - Vistas.sql](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Vistas.sql)
+Código extraido del archivo [ProyectoDB - Tablespace.sql](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Tablespace.sql)
 
 ```sql
 -- Crear tablespace para el proyecto
@@ -460,7 +458,7 @@ CREATE TABLESPACE tbs_findit DATAFILE
     'C:/ORACLEXE/APP/ORACLE/ORADATA/XE/PROYECTO_FIND_IT.DBF' SIZE 2048M
 EXTENT MANAGEMENT LOCAL SEGMENT SPACE MANAGEMENT AUTO;
 ```
-*[ProyectoDB - Vistas.sql | Linea 12](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Vistas.sql#L12)*
+*[ProyectoDB - Tablespace.sql | Linea 12](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Tablespace.sql#L12)*
 
 
 # Laboratorio 1.2
@@ -609,7 +607,7 @@ CREATE OR REPLACE VIEW view_pedidos_pendientes_dia AS
     ORDER BY
         soli.fecha DESC;
 ```
-*[ProyectoDB - Vistas.sql | Linea 51](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Vistas.sql#L51)*
+*[ProyectoDB - Vistas.sql | Linea 10](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Vistas.sql#L10)*
 
 ### Vista 2
 En esta vista listamos el promedio de los productos pedidos entre dos fechas.
@@ -623,13 +621,14 @@ CREATE OR REPLACE VIEW view_productos_pedidos AS
              solicitud soli
         JOIN producto prod ON soli.producto = prod.id_producto
     WHERE
-            soli.fecha >= 'YYYY-MM-DD'
-        AND soli.fecha < 'YYYY-MM-DD'
+            soli.fecha >= '2020-01-01'
+        AND soli.fecha < '2020-05-31'
     GROUP BY
         prod.nombre
     ORDER BY
         prod.nombre;
 ```
+*[ProyectoDB - Vistas.sql | Linea 32](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Vistas.sql#L32)*
 
 ## Mecanismos de Seguridad
 ### Auditoria
