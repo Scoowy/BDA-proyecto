@@ -522,7 +522,9 @@ Después de la desnormalización la columna *cliente* hace relación con la tabl
 ## Árboles de algebra relacional
 
 ### El más óptimo
+**τ** usua.usuario, soli.fecha **( π** usua.usuario, soli.id_solicitud, prod.nombre, soli.fecha, soli.estado **( ρ** prod **(producto) ⨝** prod.id_producto = soli.producto **( σ** usua.usuario = 'pemalm' **( ρ** usua **(usuario) ) ⨝** soli.cliente = usua.dni **σ** soli.estado = '*COMPLETO*' **( ρ** soli **(solicitud) ) ) ) )**
 
+*IMAGEN*
 
 
 # Laboratorio 1.3
