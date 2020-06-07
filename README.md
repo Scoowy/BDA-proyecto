@@ -482,22 +482,28 @@ WHERE
 ```
 
 ## Tablas antes y después de la desnormalización
-*Se presentan únicamente las tablas involucradas en la consulta que sufren la desnormalización*
+*Se presentan únicamente las tablas involucradas en la consulta que sufren la desnormalización.*
 ### Antes
 #### Tabla Cliente
 | dni        |
 |------------|
 | 1900510000 |
 
+La tabla `Cliente` se comporta como una tabla transitiva, que une el usuario con la solicitud realizada. 
+
 #### Tabla Estado Solicitud
 | id_estado | estado   |
 |-----------|----------|
 | 1         | COMPLETO |
 
+La tabla `Solicitud` es una tabla categorica, que no contendra más de 4 estados: `COMPLETO`, `PENDIENTE`, `ANULADO` o `NO ATENDIDO`.
+
 #### Tabla Solicitud
 | id_solicitud | cantidad | fecha      | cliente    | producto | estado |
 |--------------|----------|------------|------------|----------|--------|
 | 423          | 20       | 2020-05-24 | 1900510000 | 5        | 1      |
+
+La tabla Solicitud tiene una `FK` en la columna *cliente* que hace relación con la tabla `Cliente` y la columna de *estado* que relaciona con la tabla de `Estado Solicitud`.
 
 ### Después
 #### Tabla Cliente
@@ -510,6 +516,8 @@ WHERE
 | id_solicitud | cantidad | fecha      | cliente    | producto | estado   |
 |--------------|----------|------------|------------|----------|----------|
 | 423          | 20       | 2020-05-24 | 1900510000 | 5        | COMPLETO |
+
+Después de la desnormalización la columna *cliente* hace relación con la tabla `Usuario` y la columna de *estado* proporciona directamente el estado de lacolicitud sin la necesidad de relacionar otra tabla.
 
 ## Árboles de algebra relacional
 
