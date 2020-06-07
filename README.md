@@ -415,10 +415,10 @@ CREATE INDEX producto_nombre_idx ON
 #### Distribución de discos
 | Nro discos | Tablas |
 | ---------- | ------ |
-| 1 | `Usuario`  |
-| 1 | `Gerente` `Establecimiento` `Direccion` |
-| 1 | `Solicitud` `Solicitudes` |
-| 1 | `Producto` `EstadoSolicitud` `MarcaProducto` `TipoProducto` |
+| 1 | `Usuario` `Gerente` `Cliente` |
+| 1 | `Establecimiento` `Direccion` |
+| 1 | `Solicitud` `Respuesta` `Estado Solicitud` |
+| 1 | `Producto` `MarcaProducto` `TipoProducto` |
 | 1 | _Índices_ |
 | 1 | _Respaldo_A_ |
 | 1 | _Respaldo_B_ |
@@ -426,7 +426,7 @@ CREATE INDEX producto_nombre_idx ON
 #### Justificación
 _Distribución tomando en cuenta el [Análisis transaccional](https://github.com/Scoowy/BDA-proyecto#an%C3%A1lisis-transaccional)_
 
-La razón por la cual usamos 6 discos para guardar la información es que nuestro sistema debe garantizar un buen seguimiento de todos sus clientes, debemos ser capaces de guardar una gran cantidad de información de los clientes y de las solicitudes que ello genera cada vez que utilizan nuestra aplicación y de la misma manera guardar toda la información de las tiendas que tendremos disponibles para visualizar los productos.
+La razón por la cual usamos **7 discos** para guardar la información es que nuestro sistema debe garantizar un buen seguimiento de todos sus clientes, debemos ser capaces de guardar una gran cantidad de información de los clientes y de las solicitudes que ello genera cada vez que utilizan nuestra aplicación y de la misma manera guardar toda la información de las tiendas que tendremos disponibles para visualizar los productos.
 
 ### Definición de tablespaces
 ```sql
