@@ -12,6 +12,12 @@ JDB
 ### Título
 Find it! - Encuentra el producto cerca de ti.
 
+### Herramientas utilizadas
+SQL: [SQL Developer](https://www.oracle.com/tools/downloads/sqldev-downloads.html)
+Diagramas: [Enterprise Architect - Trial Edition](https://sparxsystems.com/products/ea/trial/request.html)
+Tablas formato Markdown: [Tables Generator](https://www.tablesgenerator.com/)
+Árboles relacionales: [RelaX - Relational algebra calculator](https://dbis-uibk.github.io/relax/index.htm)
+
 # Laboratorio 1.1
 ## Descripción del problema 
 A causa de la pandemia mundial nos hemos visto obligados a entrar en confinamiento, evitando salir para cumplir con las disposiciones gubernamentales ante esta amenaza sanitaria; pero población necesita diversos productos que con el paso de los días se van agotando y el salir en búsqueda de los mismos es un riesgo tanto para el representante del hogar como para la familia.
