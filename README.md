@@ -520,12 +520,35 @@ La tabla Solicitud tiene una `FK` en la columna *cliente* que hace relación con
 Después de la desnormalización la columna *cliente* hace relación con la tabla `Usuario` y la columna de *estado* proporciona directamente el estado de lacolicitud sin la necesidad de relacionar otra tabla.
 
 ## Árboles de algebra relacional
+### El menos óptimo
+En este las selecciones por `estado = 'COMPLETO'` y `usuario = 'pemalm'`, se realizan después de completarse todos los `JOIN`, por ende asta llegar este punto se puede tener un numero muy elevado de registros que filtrar.
 
-### El más óptimo
-**τ** usua.usuario, soli.fecha **( π** usua.usuario, soli.id_solicitud, prod.nombre, soli.fecha, soli.estado **( ρ** prod **(producto) ⨝** prod.id_producto = soli.producto **( σ** usua.usuario = 'pemalm' **( ρ** usua **(usuario) ) ⨝** soli.cliente = usua.dni **σ** soli.estado = '*COMPLETO*' **( ρ** soli **(solicitud) ) ) ) )**
+#### Algebra relacional
+**τ** usua.usuario, soli.fecha **( π** usua.usuario, soli.id_solicitud, prod.nombre, soli.fecha, soli.estado **( σ** soli.estado = '*COMPLETO*' **∧** usua.usuario = '*pemalm*' **( ρ** prod **(producto) ⨝** prod.id_producto = soli.producto **( ρ** usua **(usuario) ⨝** soli.cliente = usua.dni  **ρ** soli **(solicitud) ) ) ) )**
 
+#### Árbol relacional
 *IMAGEN*
 
+#### Resultado esperado
+| usuario | id_solicitud | producto | fecha      | estado   |
+|---------|--------------|----------|------------|----------|
+| pemalm  | 1            | Agua     | 2020-05-20 | COMPLETO |
+| pemalm  | 6            | Pasta    | 2020-05-21 | COMPLETO |
+
+### El más óptimo
+En este caso las selecciones por `estado = 'COMPLETO'` y `usuario = 'pemalm'`, se realizan antes de los `JOIN`, por ende al moemnto de realizar los `JOIN` se obtinene resultados de menor numero de registros, resultando en una optimizacion de proceso y tiempo.
+
+#### Algebra relacional
+**τ** usua.usuario, soli.fecha **( π** usua.usuario, soli.id_solicitud, prod.nombre, soli.fecha, soli.estado **( ρ** prod **(producto) ⨝** prod.id_producto = soli.producto **( σ** usua.usuario = '*pemalm*' **( ρ** usua **(usuario) ) ⨝** soli.cliente = usua.dni **σ** soli.estado = '*COMPLETO*' **( ρ** soli **(solicitud) ) ) ) )**
+
+#### Árbol relacional
+*IMAGEN*
+
+#### Resultado esperado
+| usuario | id_solicitud | producto | fecha      | estado   |
+|---------|--------------|----------|------------|----------|
+| pemalm  | 1            | Agua     | 2020-05-20 | COMPLETO |
+| pemalm  | 6            | Pasta    | 2020-05-21 | COMPLETO |
 
 # Laboratorio 1.3
 ## Vistas de Usuario
