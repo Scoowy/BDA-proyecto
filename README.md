@@ -584,7 +584,8 @@ Las siguientes vistas generadas no toman en cuenta los cambios realizados en el 
 Código extraido del archivo [ProyectoDB - Vistas.sql](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Vistas.sql)
 
 ### Vista 1
-En esta vista listamos todas las solicitudes generadas en un día determinado y el establecimiento que atendió el pedido 
+En esta vista listamos todas las solicitudes pendientes del dia actual ordenadas por la mas reciente.
+
 ```sql
 CREATE OR REPLACE VIEW view_pedidos_pendientes_dia AS
     SELECT
@@ -609,13 +610,23 @@ CREATE OR REPLACE VIEW view_pedidos_pendientes_dia AS
 *[ProyectoDB - Vistas.sql | Linea 51](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Vistas.sql#L51)*
 
 ### Vista 2
-En esta vista listamos las marcas que se tinen disponibles y el tipo de producto que podemos ofrecer.
+En esta vista listamos el promedio de los productos pedidos entre dos fechas.
+
 ```sql
-CREATE VIEW P_tipo
-AS (SELECT idProducto, nombre, tipo, marca)
-FROM Producto P MarcaProducto M
-LEFT OUTER JOIN MarcaProducto M ON M.idMarca = P.marca 
-WHERE tipo = “Lacteos”
+CREATE OR REPLACE VIEW view_productos_pedidos AS
+    SELECT
+        prod.nombre              producto,
+        AVG(soli.cantidad)       promedio
+    FROM
+             solicitud soli
+        JOIN producto prod ON soli.producto = prod.id_producto
+    WHERE
+            soli.fecha >= 'YYYY-MM-DD'
+        AND soli.fecha < 'YYYY-MM-DD'
+    GROUP BY
+        prod.nombre
+    ORDER BY
+        prod.nombre;
 ```
 
 ## Mecanismos de Seguridad
