@@ -170,6 +170,8 @@ Finalmente para asegurar la integridad de la información y la existencia del pr
 | Cliente        | dni   | 10     | varchar      | PK           | Llave   primaria para indentificar el cliente | Usuario,   Solicitud    |
 ## Diseño físico
 ### Traducción modelo lógico a SGBD (DDL)
+Código extraido del archivo [ProyectoDB - Tablas.sql](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Tablas.sql)
+
 #### Tabla Tipo Producto
 ```sql
 CREATE TABLE tipo_producto (
@@ -177,6 +179,7 @@ CREATE TABLE tipo_producto (
     tipo     VARCHAR2(80 CHAR) NOT NULL
 );
 ```
+*[ProyectoDB - Tablas.sql | Linea 10](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Tablas.sql#L10)*
 
 #### Tabla Marca Producto
 ```sql
@@ -185,6 +188,7 @@ CREATE TABLE marca_producto (
     marca     VARCHAR2(120 CHAR) NOT NULL
 );
 ```
+*[ProyectoDB - Tablas.sql | Linea 15](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Tablas.sql#L15)*
 
 #### Tabla Estado Solicitud
 ```sql
@@ -193,6 +197,7 @@ CREATE TABLE estado_solicitud (
     estado     VARCHAR2(15 CHAR) NOT NULL
 );
 ```
+*[ProyectoDB - Tablas.sql | Linea 20](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Tablas.sql#L20)*
 
 #### Tabla Producto
 ```sql
@@ -209,6 +214,7 @@ CREATE TABLE producto (
             ON DELETE SET NULL
 );
 ```
+*[ProyectoDB - Tablas.sql | Linea 25](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Tablas.sql#L25)*
 
 #### Tabla Usuario
 ```sql
@@ -222,6 +228,7 @@ CREATE TABLE usuario (
     fecha_nac  DATE NOT NULL
 );
 ```
+*[ProyectoDB - Tablas.sql | Linea 38](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Tablas.sql#L38)*
 
 #### Tabla Cliente
 ```sql
@@ -232,6 +239,7 @@ CREATE TABLE cliente (
             ON DELETE CASCADE
 );
 ```
+*[ProyectoDB - Tablas.sql | Linea 48](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Tablas.sql#L48)*
 
 #### Tabla Solicitud
 ```sql
@@ -253,6 +261,7 @@ CREATE TABLE solicitud (
             ON DELETE CASCADE
 );
 ```
+*[ProyectoDB - Tablas.sql | Linea 55](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Tablas.sql#L55)*
 
 #### Tabla Direccion
 ```sql
@@ -264,6 +273,7 @@ CREATE TABLE direccion (
     ciudad        VARCHAR2(150 CHAR) NOT NULL
 );
 ```
+*[ProyectoDB - Tablas.sql | Linea 73](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Tablas.sql#L73)*
 
 #### Tabla Establecimiento
 ```sql
@@ -279,6 +289,7 @@ CREATE TABLE establecimiento (
             ON DELETE CASCADE
 );
 ```
+*[ProyectoDB - Tablas.sql | Linea 81](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Tablas.sql#L81)*
 
 #### Tabla Gerente
 ```sql
@@ -294,6 +305,7 @@ CREATE TABLE gerente (
             ON DELETE SET NULL
 );
 ```
+*[ProyectoDB - Tablas.sql | Linea 93](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Tablas.sql#L93)*
 
 #### Tabla Respuesta
 ```sql
@@ -308,6 +320,7 @@ CREATE TABLE respuesta (
             ON DELETE CASCADE
 );
 ```
+*[ProyectoDB - Tablas.sql | Linea 105](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Tablas.sql#L105)*
 
 ### Análisis transaccional
 #### Transacciones
@@ -376,6 +389,8 @@ Gracias a la matriz cruzada se determina que las tablas críticas son:
 * Producto
 
 ### Índices requeridos
+Código extraido del archivo [ProyectoDB - Indices.sql](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Indices.sql)
+
 ```sql
 CREATE INDEX direccion_callep_idx ON
     direccion (
@@ -429,16 +444,21 @@ _Distribución tomando en cuenta el [Análisis transaccional](https://github.com
 La razón por la cual usamos **7 discos** para guardar la información es que nuestro sistema debe garantizar un buen seguimiento de todos sus clientes, debemos ser capaces de guardar una gran cantidad de información de los clientes y de las solicitudes que ello genera cada vez que utilizan nuestra aplicación y de la misma manera guardar toda la información de las tiendas que tendremos disponibles para visualizar los productos.
 
 ### Definición de tablespaces
+Código extraido del archivo [ProyectoDB - Vistas.sql](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Vistas.sql)
+
 ```sql
 -- Crear tablespace para el proyecto
 CREATE TABLESPACE tbs_findit DATAFILE
     'C:/ORACLEXE/APP/ORACLE/ORADATA/XE/PROYECTO_FIND_IT.DBF' SIZE 2048M
 EXTENT MANAGEMENT LOCAL SEGMENT SPACE MANAGEMENT AUTO;
 ```
+*[ProyectoDB - Vistas.sql | Linea 12](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Vistas.sql#L12)*
 
 
 # Laboratorio 1.2
 ## Consulta antes y después de la desnormalización
+Código extraido del archivo [ProyectoDB - Tablas - Desnormalizadas.sql](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Tablas%20-%20Desnormalizadas.sql)
+
 ### Antes
 ```sql
 SELECT
@@ -550,9 +570,14 @@ En este caso las selecciones por `estado = 'COMPLETO'` y `usuario = 'pemalm'`, s
 | pemalm  | 1            | Agua     | 2020-05-20 | COMPLETO |
 | pemalm  | 6            | Pasta    | 2020-05-21 | COMPLETO |
 
+
 # Laboratorio 1.3
 ## Vistas de Usuario
+Las siguientes vistas generadas no toman en cuenta los cambios realizados en el proceso de [desnormalización](https://github.com/Scoowy/BDA-proyecto#laboratorio-12).
 
+Código extraido del archivo [ProyectoDB - Vistas.sql](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Vistas.sql)
+
+### Vista 1
 En esta vista listamos todas las solicitudes generadas en un día determinado y el establecimiento que atendió el pedido 
 ```sql
 CREATE OR REPLACE VIEW view_pedidos_pendientes_dia AS
@@ -575,7 +600,9 @@ CREATE OR REPLACE VIEW view_pedidos_pendientes_dia AS
     ORDER BY
         soli.fecha DESC;
 ```
+*[ProyectoDB - Vistas.sql | Linea 51](https://github.com/Scoowy/BDA-proyecto/blob/master/sql/ProyectoDB%20-%20Vistas.sql#L51)*
 
+### Vista 2
 En esta vista listamos las marcas que se tinen disponibles y el tipo de producto que podemos ofrecer.
 ```sql
 CREATE VIEW P_tipo
@@ -584,6 +611,7 @@ FROM Producto P MarcaProducto M
 LEFT OUTER JOIN MarcaProducto M ON M.idMarca = P.marca 
 WHERE tipo = “Lacteos”
 ```
+
 ## Mecanismos de Seguridad
 ### Auditoria
 Activando la auditoria podemos realizar un examen de los accesos a los datos almacenados en las bases de datos con el fin de poder medir, monitorear y tener constancia de los accesos a la información almacenada en la misma, de esta manera podemos conocer de forma exacta cuál es la relación de los usuarios a la hora de acceder a las bases de datos, incluyendo las actuaciones que deriven en una generación, modificación o eliminación de datos.
